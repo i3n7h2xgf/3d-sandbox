@@ -1,0 +1,196 @@
+@font-face {
+    font-family: 'craketest';
+    src: url('FONT/craketest-regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Planet Kosmos';
+    font-style: normal;
+    font-weight: normal;
+    src: url('FONT/PLANK___.woff'), format('woff');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px 60px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.date {
+    text-align: left;
+    /* Memberi jarak agar tidak terlalu nempel ke grid hiasan */
+    margin-right: 60px; 
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.date p {
+    font-size: 1.2rem;
+    color: #fff; /* Atau #555 kalau mau lebih redup */
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    line-height: 1.2;
+}
+
+.grid-hiasan {
+    display: grid;
+    font-family: 'Inter', sans-serif;
+    grid-template-columns: repeat(4, auto);
+    gap: 40px;
+    width: 60%;
+    text-transform: uppercase;
+}
+
+.logo-text {
+    font-size: 0.7rem; /* Adjust the font size as needed */
+    letter-spacing: -0.1px;
+    font-weight: 300;
+    color: #ffffff;
+    margin-bottom: 2px;
+    line-height: 1.2;
+    font-stretch: semi-condensed;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: auto auto;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+}
+
+nav a {
+
+    color:#fff;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    transition: opacity 0.3s;
+    line-height: 1.2;
+
+    margin-bottom: 0px;
+    margin-top: 0px;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: left;
+}
+
+nav a:hover {
+    opacity: 0.5;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 105vh;
+    padding-bottom: 50px;
+}
+
+.hero-text {
+    font-family: 'Planet Kosmos', sans-serif;
+    font-size: 9vw; /* Adjust the font size as needed */
+    letter-spacing: 3px;
+    margin-top: 100px;
+}
+
+.recents-work {
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    display: flex;
+    justify-content: left;
+    padding: 10px 50px;
+    margin-bottom: 10px;
+}
+
+.landing-work {
+    min-height: 100vh;
+}
+
+hr {
+    padding: 15px 50px;
+    border: none;
+    border-top: 1px solid white;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.work-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px 50px;
+
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 1rem; /* Adjust the font size as needed */
+    letter-spacing: 1px;
+    font-stretch: semi-condensed;
+    gap: 90px 20px;
+    
+}
+
+.work-item img {
+    width: 100%;
+    aspect-ratio: 5 / 3;
+    object-fit: cover;
+    object-position: center;
+    margin-top: 0px;
+    cursor: pointer;
+}
+
+.work-item img:hover {
+    opacity: 0.9;
+}
+
+.landing-page {
+    min-height: 20vh;
+}
+
+.landing-about {
+    min-height: 100vh;
+    width: 100%;
+}
+
+.about-title {
+    margin-top: 130px;
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    font-size: 23vw; /* Adjust the font size as needed */
+    display: flex;
+    justify-content: center;
+    padding: 10px 50px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+.about-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    padding: 0 50px;
+    margin-bottom: 20px;
+}
+
+
+
+
+
