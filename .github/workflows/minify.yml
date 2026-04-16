@@ -1,1 +1,28 @@
+yaml
+name: Minify and Deploy
 
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4
+
+      - name: Minify JS, CSS, and HTML
+        uses: nizaris/minify-all-action@master
+        with:
+          directory: '.' # Titik artinya 'proses semua file di repo ini'
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: '-minified' # Ini folder output default-nya
+          branch: gh-pages
