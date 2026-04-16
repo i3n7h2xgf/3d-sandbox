@@ -26,14 +26,10 @@ jobs:
       - name: Minify Process
         run: |
           mkdir dist
-          # Copy cuma file web aja, jangan copy folder .github biar gak kuning/error
-          cp -r *.html *.png *.jpg *.jpeg *.svg *.gif dist/ 2>/dev/null || true
-          cp -r css/ dist/css/ 2>/dev/null || true
-          cp -r js/ dist/js/ 2>/dev/null || true
-          cp -r assets/ dist/assets/ 2>/dev/null || true
-          cp -r fonts/ dist/fonts/ 2>/dev/null || true
+          # Copy isi dari DALAM folder src ke folder dist
+          cp -r src/* dist/ 2>/dev/null || true
 
-          # Proses Minify (Cuma file di dalem folder dist)
+          # Proses Minify file yang sudah dipindah ke dist
           find dist -name "*.css" -exec cleancss -o {} {} \;
           find dist -name "*.js" -exec terser {} -o {} \;
           find dist -name "*.html" -exec html-minifier --collapse-whitespace --remove-comments -o {} {} \;
