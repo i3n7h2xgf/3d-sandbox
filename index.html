@@ -134,6 +134,8 @@
     
     -->
     <section id="landing-home" class="landing-page">
+        
+        <a href="#landing-home" class="ladning-link"></a>
         <header>
             <div class="date">
                 <p id="current-date">3.09.2024</p>
@@ -160,11 +162,11 @@
                 </div>
             </div>
 
-            <NAV>
-                <a href="#"> Page</a>
-                <a href="#"> About</a>
-                <a href="#"> Archive</a>
-                <a href="#"> Contact</a>
+            <NAV class="nav">
+                <a href="#landing-experimental"> Home</a>
+                <a href="#about-me"> About</a>
+                <a href="#work-contentv2"> Persona</a>
+                <a href="#contact-me"> Contact</a>
 
                 <!-- Language Switcher Niatnya -->
                 <!--
@@ -240,38 +242,59 @@
         <h3 class="recents-workv2">Heteronyms:</h3>
         <div class="work-gridv2">
             <div class="work-itemv2">
-                <h4 class="h4">attashii</h4>
-                <p4 class="work-description">Substack + Letterboxd</p4>
+                <a href="attashii.html"  class="text-wrapper">
+                    <h4 class="h4">attashii</h4>
+                    <p4 class="work-description">Substack + Letterboxd</p4>
+                </a>
+                <img src="Image/attashii.jpg" alt="">
             </div>
             <hr class="line-sapcerv2">
              <div class="work-itemv2">
-                <h4 class="h4">rattashii</h4>
-                <p4 class="work-description">Behance + Portfolio</p4>
+                <a href="rattashii.html" class="text-wrapper">
+                    <h4 class="h4">rattashii</h4>
+                    <p4 class="work-description">Behance + Portfolio</p4>
+                </a>
+                <img src="Image/rattashii.jpg" alt="">
             </div>
             <hr class="line-sapcerv2">
              <div class="work-itemv2">
-                <h4 class="h4">i3n7h2xgf</h4>
-                <p4 class="work-description">Obsidian publish + Github</p4>
+                <a href="i3n7h2xgf.html" class="text-wrapper">
+                    <h4 class="h4">i3n7h2xgf</h4>
+                    <p4 class="work-description">Obsidian publish + Github</p4>
+                </a>
+                <img src="Image/i3n7h2xgf.jpg" alt="">
             </div>
             <hr class="line-sapcerv2">
              <div class="work-itemv2">
-                <h4 class="h4">axelotxxi</h4>
-                <p4 class="work-description">Raindrop + Spotify</p4>
+                <a href="axelotxxi.html" class="text-wrapper">
+                    <h4 class="h4">axelotxxi</h4>
+                    <p4 class="work-description">Raindrop + Spotify</p4>
+                </a>
+                <img src="Image/axel.jpg" alt="">
             </div>
             <hr class="line-sapcerv2">
              <div class="work-itemv2">
-                <h4 class="h4">fallatees</h4>
-                <p4 class="work-description">Medium + Goodreads</p4>
+                <a href="fallatees.html" class="text-wrapper">
+                    <h4 class="h4">fallatees</h4>
+                    <p4 class="work-description">Medium + Goodreads</p4>
+                </a>
+                <img src="Image/aster.jpg" alt="">                
             </div>
             <hr class="line-sapcerv2">
              <div class="work-itemv2">
-                <h4 class="h4">n0vlnt</h4>
-                <p4 class="work-description">Notion + desmos</p4>
+                <a href="n0vlnt.html" class="text-wrapper">
+                    <h4 class="h4">n0vlnt</h4>
+                    <p4 class="work-description">Notion + desmos</p4>
+                </a>
+                <img src="Image/n0vlnt.jpg" alt="">              
             </div>
             <hr class="line-sapcerv2">
              <div class="work-itemv2">
-                <h4 class="h4">hairyslickass</h4>
-                <p4 class="work-description">Guide-books + Logseq</p4>
+                <a href="hairyslickass.html" class="text-wrapper">
+                    <h4 class="h4">hairyslickass</h4>
+                    <p4 class="work-description">Guide-books + Logseq</p4>
+                </a>
+                <img src="Image/hairyslickass.jpg" alt="a">
             </div>
             <hr class="line-sapcerv2">
         </div>
@@ -298,8 +321,13 @@
         </div>
     </div> 
 
+    <section id="landing-archive" class="collections">
+        <h5 class="archive-title">Collection</h5>
+
+    </section>
+
     <section id="contact-me" class="landing-contact2">
-        <h4 class="contact-title2">Let's Be Moots</h4>
+        <h4 class="contact-title2">Moots</h4>
         <div class="grid-contact">
             <div class="contact-item2">
                 <h4 class="contact-number">01</h4>
@@ -327,7 +355,7 @@
         </div>
     </footer>   
     <style>
-    body, html, a, button, .work-item img {
+    body, html, a, button, .work-item img, .work-itemv2, .h4 {
         cursor: url('Image/CursorSmall.png'), auto !important;
     }
     </style>
@@ -335,8 +363,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
-
-<script src="script.js"></script>
+    <script src="script-3(button).js"></script>
 
 
 </body>

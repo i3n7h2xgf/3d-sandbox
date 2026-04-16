@@ -26,6 +26,19 @@
     position: relative;
 }
 
+html {
+  scroll-behavior: smooth;
+  
+}
+
+#contact-me {
+  scroll-margin-top: 20vh;
+}
+
+#work-contentv2 {
+  scroll-margin-top: 15vh;
+}
+
 body, html {
     overflow-x: hidden;
     width: 100%;
@@ -492,7 +505,6 @@ header {
     width: 100%;
     top: 0;
     z-index: 100;
-    
 }
 
 #landing-home, .date, .logo-text {
@@ -666,7 +678,7 @@ hr {
     border-top: 1px solid white;
     margin-right: 50px;
     margin-left: 50px;
-    justify-content: center
+    justify-content: center;
 }
 
 
@@ -677,17 +689,21 @@ hr {
     justify-content: left;
     padding: 10px 50px;
     margin-bottom: 10px;
-}
+  }
 
 
 .work-itemv2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    padding: 0px 50px;
+    position: relative;
+    height: 100px;
 
-    margin-bottom: 20px;
-    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0px 50px;
+    margin: -5px 0;
 
     line-height: 1;
 
@@ -697,15 +713,41 @@ hr {
     letter-spacing: -2px;
 }
 
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  pointer-events: auto;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+.work-itemv2 img {
+  width: 30%;
+  position: absolute;
+  aspect-ratio: 5 / 3 ;
+  object-fit: cover;
+
+  opacity: 0;
+  transition: all 0.7s ease;
+  position: sticky;
+  pointer-events: none;
+  
+}
+
+.work-itemv2:hover img {
+  opacity: 1;
+  
+  transition: opacity 0.4s ease-out;
+}
+
 .work-description {
     font-family: 'Inter', sans-serif;
     text-transform: normal;
     font-size: 1.5rem;
     opacity: 0.7;
     justify-content: left;
-
-    cursor: pointer;
-
 } 
 
 .work-description:hover {
@@ -713,7 +755,7 @@ hr {
 }
 
 .h4 {
-    cursor: pointer;
+    cursor: default;
 }
 
 .h4:hover {
@@ -774,6 +816,7 @@ hr {
     font-size: 1rem; /* Adjust the font size as needed */
     display: flex;
     justify-content: left;
+    letter-spacing: -1;
     padding: 10px 50px;
     margin-bottom: 10px;
 }
