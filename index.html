@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[untitled]</title> 
-    <link rel="icon" href="Image/Logo-icon.jpg">
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="preload" href="FONT/PLANK___.woff" as="font" type="font/woff" crossorigin>
+    <title>attashii_</title> 
+    <link rel="stylesheet" href="style-3.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,339 +21,343 @@
 </head>
 
 <body>
-
+    <div id="loaderWrapper" class="loader-wrapper">
+        <div id="loaderNumber" class="loader-number">0%</div>
+    </div>
     
-    <section id="landing-experimental" class="landing-exp">
+    <div id="all-content" class="is-loading">
+
+        <section id="landing-experimental" class="landing-exp">
 
         
-        <main>
-            <h1 class="hero-text"> ATTASHII</h1>
-        </main>
+            <main>
+                <h1 class="hero-text data">ATTASHII</h1>
+            </main>
+
+            <div class="scheme-btn-fixed-wrapper">
+                <button id="scheme-changer" class="scheme-btn-fixed data">Scheme Changer</button>
+            </div>
+            <div class="custom-cursor" id="customCursor"></div>
+      
+            <div class="landing-footer-controls"> 
+                
+                <!-- Color Scheme Controls -->
+                <div style="display: none !important;">
+                    <button class="color-btn active" data-scheme="1">Scheme 1</button>
+                    <button class="color-btn" data-scheme="2">Scheme 2</button>
+                    <button class="color-btn" data-scheme="3">Scheme 3</button>
+                    <button class="color-btn" data-scheme="4">Scheme 4</button>
+                    <button class="color-btn" data-scheme="5">Scheme 5</button>
+                </div>
+
+                <!-- Color Adjuster Toggle Button --
+                <button class="toggle-adjuster-btn" id="toggleAdjusterBtn">Adjust Colors</button>--> 
+
+            </div>
+            <!-- Color Adjuster Panel --
+            <div class="color-adjuster-panel" id="colorAdjusterPanel">
+                <div class="color-adjuster-header">
+                <h5 class="color-adjuster-title">Color Adjuster</h5>
+                <button class="color-adjuster-close" id="closeAdjusterBtn">×</button>
+                </div>
+
+                <div class="color-picker-group">
+                <div class="color-picker-label">
+                    <span>Color 1</span>
+                </div>
+                <div class="color-picker-wrapper">
+                    <input type="color" class="color-picker-input" id="colorPicker1" data-color="1">
+                    <input type="text" class="color-value-display" id="colorValue1" readonly>
+                    <button class="copy-btn" data-copy="1">Copy</button>
+                </div>
+                </div>
+
+                <div class="color-picker-group">
+                <div class="color-picker-label">
+                    <span>Color 2</span>
+                </div>
+                <div class="color-picker-wrapper">
+                    <input type="color" class="color-picker-input" id="colorPicker2" data-color="2">
+                    <input type="text" class="color-value-display" id="colorValue2" readonly>
+                    <button class="copy-btn" data-copy="2">Copy</button>
+                </div>
+                </div>
+
+                <div class="color-picker-group">
+                <div class="color-picker-label">
+                    <span>Color 3</span>
+                </div>
+                <div class="color-picker-wrapper">
+                    <input type="color" class="color-picker-input" id="colorPicker3" data-color="3">
+                    <input type="text" class="color-value-display" id="colorValue3" readonly>
+                    <button class="copy-btn" data-copy="3">Copy</button>
+                </div>
+                </div>
+
+                <div class="color-picker-group">
+                <div class="color-picker-label">
+                    <span>Color 4</span>
+                </div>
+                <div class="color-picker-wrapper">
+                    <input type="color" class="color-picker-input" id="colorPicker4" data-color="4">
+                    <input type="text" class="color-value-display" id="colorValue4" readonly>
+                    <button class="copy-btn" data-copy="4">Copy</button>
+                </div>
+                </div>
+
+                <div class="color-picker-group">
+                <div class="color-picker-label">
+                    <span>Color 5</span>
+                </div>
+                <div class="color-picker-wrapper">
+                    <input type="color" class="color-picker-input" id="colorPicker5" data-color="5">
+                    <input type="text" class="color-value-display" id="colorValue5" readonly>
+                    <button class="copy-btn" data-copy="5">Copy</button>
+                </div>
+                </div>
+
+                <div class="color-picker-group">
+                <div class="color-picker-label">
+                    <span>Color 6</span>
+                </div>
+                <div class="color-picker-wrapper">
+                    <input type="color" class="color-picker-input" id="colorPicker6" data-color="6">
+                    <input type="text" class="color-value-display" id="colorValue6" readonly>
+                    <button class="copy-btn" data-copy="6">Copy</button>
+                </div>
+                </div>
 
 
-        <div class="custom-cursor" id="customCursor"></div>
-      <!--
-        <div class="landing-footer-controls"> 
-            <!-- Color Scheme Controls --
-            <div class="color-controls">
-                <button class="color-btn active" data-scheme="1">Scheme 1</button>
-                <button class="color-btn" data-scheme="2">Scheme 2</button>
-                <button class="color-btn" data-scheme="3">Scheme 3</button>
-                <button class="color-btn" data-scheme="4">Scheme 4</button>
-                <button class="color-btn" data-scheme="5">Scheme 5</button>
-            </div>
+                <div class="color-adjuster-actions">
+                <button class="export-btn" id="exportAllBtn">Export All Colors</button>
+                </div>
+            </div>--> 
+        </section>
 
-            <!-- Color Adjuster Toggle Button 
-            <button class="toggle-adjuster-btn" id="toggleAdjusterBtn">Adjust Colors</button>
-
-        </div>
-        <!-- Color Adjuster Panel 
-        <div class="color-adjuster-panel" id="colorAdjusterPanel">
-            <div class="color-adjuster-header">
-            <h5 class="color-adjuster-title">Color Adjuster</h5>
-            <button class="color-adjuster-close" id="closeAdjusterBtn">×</button>
-            </div>
-
-            <div class="color-picker-group">
-            <div class="color-picker-label">
-                <span>Color 1</span>
-            </div>
-            <div class="color-picker-wrapper">
-                <input type="color" class="color-picker-input" id="colorPicker1" data-color="1">
-                <input type="text" class="color-value-display" id="colorValue1" readonly>
-                <button class="copy-btn" data-copy="1">Copy</button>
-            </div>
-            </div>
-
-            <div class="color-picker-group">
-            <div class="color-picker-label">
-                <span>Color 2</span>
-            </div>
-            <div class="color-picker-wrapper">
-                <input type="color" class="color-picker-input" id="colorPicker2" data-color="2">
-                <input type="text" class="color-value-display" id="colorValue2" readonly>
-                <button class="copy-btn" data-copy="2">Copy</button>
-            </div>
-            </div>
-
-            <div class="color-picker-group">
-            <div class="color-picker-label">
-                <span>Color 3</span>
-            </div>
-            <div class="color-picker-wrapper">
-                <input type="color" class="color-picker-input" id="colorPicker3" data-color="3">
-                <input type="text" class="color-value-display" id="colorValue3" readonly>
-                <button class="copy-btn" data-copy="3">Copy</button>
-            </div>
-            </div>
-
-            <div class="color-picker-group">
-            <div class="color-picker-label">
-                <span>Color 4</span>
-            </div>
-            <div class="color-picker-wrapper">
-                <input type="color" class="color-picker-input" id="colorPicker4" data-color="4">
-                <input type="text" class="color-value-display" id="colorValue4" readonly>
-                <button class="copy-btn" data-copy="4">Copy</button>
-            </div>
-            </div>
-
-            <div class="color-picker-group">
-            <div class="color-picker-label">
-                <span>Color 5</span>
-            </div>
-            <div class="color-picker-wrapper">
-                <input type="color" class="color-picker-input" id="colorPicker5" data-color="5">
-                <input type="text" class="color-value-display" id="colorValue5" readonly>
-                <button class="copy-btn" data-copy="5">Copy</button>
-            </div>
-            </div>
-
-            <div class="color-picker-group">
-            <div class="color-picker-label">
-                <span>Color 6</span>
-            </div>
-            <div class="color-picker-wrapper">
-                <input type="color" class="color-picker-input" id="colorPicker6" data-color="6">
-                <input type="text" class="color-value-display" id="colorValue6" readonly>
-                <button class="copy-btn" data-copy="6">Copy</button>
-            </div>
-            </div>
-
-
-            <div class="color-adjuster-actions">
-            <button class="export-btn" id="exportAllBtn">Export All Colors</button>
-            </div>
-        </div>
-    -->
-    </section>
-   
-
-
-    <!-- 
-    
-    -->
-    <section id="landing-home" class="landing-page">
-        
-        <a href="#landing-home" class="landing-link"></a>
-        <header>
-            <div class="date">
-                <p id="current-date">3.09.2024</p>
-                <p>Jakarta</p>
-            </div>
-
+        <section id="landing-home" class="landing-page">
             
+            <a href="#landing-home" class="ladning-link"></a>
+            <header>
+                <div class="date">
+                    <p id="current-date" class="data">3.09.2024</p>
+                    <p class="data">Jakarta</p>
+                </div>
 
-            <div class="grid-hiasan">
-                <div class="logo-text"> 
-                    <p>TV Girl Listener</p>
-                    <p>Interdisciplinary Int.</p>
-                    <p>Status: Need caffeine</p>
+                
+
+                <div class="grid-hiasan">
+                    <div class="logo-text"> 
+                        <p class="data">TV Girl Listener</p>
+                        <p class="data">Interdisciplinary Int.</p>
+                        <p class="data">Status: Need caffeine</p>
+                    </div>
+                    <div class="logo-text"> 
+                        <p class="data">Graphic Design</p>
+                        <p class="data">Pain Director</p>
+                        <p class="data">2D Artist</p>
+                    </div>
+                    <div class="logo-text"> 
+                        <p class="data">Overthinking</p>
+                        <p class="data">Overfeeling</p>
+                        <p class="data">Overanalyzing</p>
+                    </div>
                 </div>
-                <div class="logo-text"> 
-                    <p>Graphic Design</p>
-                    <p>Pain Director</p>
-                    <p>2D Artist</p>
+                
+                <NAV class="nav">
+                    <a data-target="#landing-experimental" class="nav-link data"> Home</a>
+                    <a data-target="#about-me" class="nav-link data"> About</a>
+                    <a data-target="#work-contentv2" class="nav-link data"> Persona</a>
+                    <a data-target="#contact-me" class="nav-link data"> Contact</a>
+
+                    <!-- Language Switcher Niatnya -->
+                    <!--
+
+                    <div class="lang-switch">
+                        <span class="active">ID</span>/<span>EN</span>
+                    </div>
+                    -->
+                </NAV>
+            </header>
+        </section>
+        <!--
+
+        <section id="work-content" class="landing-work">
+            <h2 class="recents-work">Contents</h2>
+            <hr class="line-sapcer">
+                <div class="work-grid">
+                    <div class="work-item">
+                        <a href="https://open.spotify.com/user/31udxypphzdzthcdvhd7o63fdjje?si=b1db9ec8475a4d49">
+                            <img src="Image/spotify.jpg" alt="spotify cover">
+                        </a>
+                        <h3>Spotify playlist</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="https://letterboxd.com/attashii_/">
+                            <img src="Image/letterboxd.jpg" alt="letterboxd cover">
+                        </a>
+                        <h3>Letterboxd</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="https://www.goodreads.com/attashii_"></a>
+                            <img src="Image/goodreads.jpg" alt="goodreads cover">
+                        </a>
+                        <h3>Goodreads</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="html">
+                            <img src="Image/books guide.jpg" alt="books guide cover">
+                        </a>
+                        <h3>Books Guide</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="https://www.raindrop.io/tuff-">
+                            <img src="Image/books guide.jpg" alt="books guide cover">
+                        </a>
+                        <h3>Raindrop</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="html">
+                            <img src="Image/books guide.jpg" alt="books guide cover">
+                        </a>
+                        <h3>Github</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="html">
+                            <img src="Image/books guide.jpg" alt="books guide cover">
+                        </a>
+                        <h3>Medium</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="html">
+                            <img src="Image/books guide.jpg" alt="books guide cover">
+                        </a>
+                        <h3>Notion</h3>
+                    </div>
                 </div>
-                <div class="logo-text"> 
-                    <p>Overthinking</p>
-                    <p>Overfeeling</p>
-                    <p>Overanalyzing</p>
+        </section>
+        --> 
+
+        
+
+        <section id="work-contentv2" class="landing-workv2">
+            <h3 class="recents-workv2">Heteronyms:</h3>
+            <div class="work-gridv2">
+                <div class="work-itemv2">
+                    <a href="attashii.html"  class="text-wrapper">
+                        <h4 class="h4">attashii</h4>
+                        <p4 class="work-description">Substack + Letterboxd</p4>
+                    </a>
+                    <img src="Image/attashii.jpg" alt="">
                 </div>
+                <hr class="line-sapcerv2">
+                <div class="work-itemv2">
+                    <a href="rattashii.html" class="text-wrapper">
+                        <h4 class="h4">rattashii</h4>
+                        <p4 class="work-description">Behance + Portfolio</p4>
+                    </a>
+                    <img src="Image/rattashii.jpg" alt="">
+                </div>
+                <hr class="line-sapcerv2">
+                <div class="work-itemv2">
+                    <a href="i3n7h2xgf.html" class="text-wrapper">
+                        <h4 class="h4">i3n7h2xgf</h4>
+                        <p4 class="work-description">Obsidian publish + Github</p4>
+                    </a>
+                    <img src="Image/i3n7h2xgf.jpg" alt="">
+                </div>
+                <hr class="line-sapcerv2">
+                <div class="work-itemv2">
+                    <a href="axelotxxi.html" class="text-wrapper">
+                        <h4 class="h4">axelotxxi</h4>
+                        <p4 class="work-description">Raindrop + Spotify</p4>
+                    </a>
+                    <img src="Image/axel.jpg" alt="">
+                </div>
+                <hr class="line-sapcerv2">
+                <div class="work-itemv2">
+                    <a href="fallatees.html" class="text-wrapper">
+                        <h4 class="h4">fallatees</h4>
+                        <p4 class="work-description">Medium + Goodreads</p4>
+                    </a>
+                    <img src="Image/aster.jpg" alt="">                
+                </div>
+                <hr class="line-sapcerv2">
+                <div class="work-itemv2">
+                    <a href="n0vlnt.html" class="text-wrapper">
+                        <h4 class="h4">n0vlnt</h4>
+                        <p4 class="work-description">Notion + desmos</p4>
+                    </a>
+                    <img src="Image/n0vlnt.jpg" alt="">              
+                </div>
+                <hr class="line-sapcerv2">
+                <div class="work-itemv2">
+                    <a href="hairyslickass.html" class="text-wrapper">
+                        <h4 class="h4">hairyslickass</h4>
+                        <p4 class="work-description">Guide-books + Logseq</p4>
+                    </a>
+                    <img src="Image/hairyslickass.jpg" alt="a">
+                </div>
+                <hr class="line-sapcerv2">
+            </div>
+        </section>
+
+        <section id="about-me" class="landing-about">
+            <h4 class="about-title">About Me</h4>
+            <p class="about-description">
+                Hi, I'm Attashii, a 20-year-old graphic 
+                designer and overthinker based in Jakarta. I have a passion for creating 
+                visually captivating designs that evoke emotions and tell stories. 
+                With a keen eye for detail and a love for aesthetics, I strive to bring 
+                my unique perspective to every project I work on. When I'm not designing, 
+                you can find me lost in thought, analyzing the world around me and finding 
+                inspiration in the smallest of things.</p>
+        </section>
+
+        <div class="text-container">
+            <div class="text-animation">
+                <span>jahvuav aehabdahda cabdhadadada</span>
+                <span>jahvuav aehabdahda cabdhadadada</span>
+                <span>jahvuav aehabdahda cabdhadadada</span>
+                <span>jahvuav aehabdahda cabdhadadada</span>
+            </div>
+        </div> 
+
+        <section id="landing-archive" class="collections">
+            <h5 class="archive-title">Collection</h5>
+
+        </section>
+
+        <section id="contact-me" class="landing-contact2">
+            <h4 class="contact-title2">Moots</h4>
+            <div class="grid-contact">
+                <div class="contact-item2">
+                    <h4 class="contact-number">01</h4>
+                    <p4 class="contact-description">Instagram</p4>
+        
+                </div>
+                <hr class="line-sapcer3">
+                <div class="contact-item2">
+                    <h4 class="contact-number">02</h4>
+                    <p4 class="contact-description">Email</p4>
+                </div>
+                <hr class="line-sapcer3">
+                <div class="contact-item2">
+                    <h4 class="contact-number">03</h4>
+                    <p4 class="contact-description">Behance</p4>
+                </div>
+                <hr class="line-sapcer3">
             </div>
 
-            <NAV class="nav">
-                <a href="#landing-experimental"> Home</a>
-                <a href="#about-me"> About</a>
-                <a href="#work-contentv2"> Persona</a>
-                <a href="#contact-me"> Contact</a>
-
-                <!-- Language Switcher Niatnya -->
-                <!--
-
-                <div class="lang-switch">
-                    <span class="active">ID</span>/<span>EN</span>
-                </div>
-                -->
-            </NAV>
-        </header>
-    </section>
-    <!--
-
-    <section id="work-content" class="landing-work">
-         <h2 class="recents-work">Contents</h2>
-         <hr class="line-sapcer">
-            <div class="work-grid">
-                <div class="work-item">
-                    <a href="https://open.spotify.com/user/31udxypphzdzthcdvhd7o63fdjje?si=b1db9ec8475a4d49">
-                        <img src="Image/spotify.jpg" alt="spotify cover">
-                    </a>
-                    <h3>Spotify playlist</h3>
-                </div>
-                <div class="work-item">
-                    <a href="https://letterboxd.com/attashii_/">
-                        <img src="Image/letterboxd.jpg" alt="letterboxd cover">
-                    </a>
-                    <h3>Letterboxd</h3>
-                </div>
-                <div class="work-item">
-                    <a href="https://www.goodreads.com/attashii_"></a>
-                        <img src="Image/goodreads.jpg" alt="goodreads cover">
-                    </a>
-                    <h3>Goodreads</h3>
-                </div>
-                <div class="work-item">
-                    <a href="html">
-                        <img src="Image/books guide.jpg" alt="books guide cover">
-                    </a>
-                    <h3>Books Guide</h3>
-                </div>
-                <div class="work-item">
-                    <a href="https://www.raindrop.io/tuff-">
-                        <img src="Image/books guide.jpg" alt="books guide cover">
-                    </a>
-                    <h3>Raindrop</h3>
-                </div>
-                <div class="work-item">
-                    <a href="html">
-                        <img src="Image/books guide.jpg" alt="books guide cover">
-                    </a>
-                    <h3>Github</h3>
-                </div>
-                <div class="work-item">
-                    <a href="html">
-                        <img src="Image/books guide.jpg" alt="books guide cover">
-                    </a>
-                    <h3>Medium</h3>
-                </div>
-                <div class="work-item">
-                    <a href="html">
-                        <img src="Image/books guide.jpg" alt="books guide cover">
-                    </a>
-                    <h3>Notion</h3>
-                </div>
+        </section>
+        
+        <footer class="footer-section">
+            <div class="footer-content">
+                <p5>@attashii</p5>
             </div>
-    </section>
-    --> 
-
+        </footer>  
+        
+    </div>
     
-
-    <section id="work-contentv2" class="landing-workv2">
-        <h3 class="recents-workv2">Heteronyms:</h3>
-        <div class="work-gridv2">
-            <div class="work-itemv2">
-                <a href="attashii/"  class="text-wrapper">
-                    <h4 class="h4">attashii</h4>
-                    <p4 class="work-description">Substack + Letterboxd</p4>
-                </a>
-                <img src="Image/attashii.jpg" alt="">
-            </div>
-            <hr class="line-sapcerv2">
-             <div class="work-itemv2">
-                <a href="rattashii/" class="text-wrapper">
-                    <h4 class="h4">rattashii</h4>
-                    <p4 class="work-description">Behance + Portfolio</p4>
-                </a>
-                <img src="Image/rattashii.jpg" alt="">
-            </div>
-            <hr class="line-sapcerv2">
-             <div class="work-itemv2">
-                <a href="i3n7h2xgf/" class="text-wrapper">
-                    <h4 class="h4">i3n7h2xgf</h4>
-                    <p4 class="work-description">Obsidian publish + Github</p4>
-                </a>
-                <img src="Image/i3n7h2xgf.jpg" alt="">
-            </div>
-            <hr class="line-sapcerv2">
-             <div class="work-itemv2">
-                <a href="axelotxxi/" class="text-wrapper">
-                    <h4 class="h4">axelotxxi</h4>
-                    <p4 class="work-description">Raindrop + Spotify</p4>
-                </a>
-                <img src="Image/axel.jpg" alt="">
-            </div>
-            <hr class="line-sapcerv2">
-             <div class="work-itemv2">
-                <a href="fallatees/" class="text-wrapper">
-                    <h4 class="h4">fallatees</h4>
-                    <p4 class="work-description">Medium + Goodreads</p4>
-                </a>
-                <img src="Image/aster.jpg" alt="">                
-            </div>
-            <hr class="line-sapcerv2">
-             <div class="work-itemv2">
-                <a href="n0vlnt/" class="text-wrapper">
-                    <h4 class="h4">n0vlnt</h4>
-                    <p4 class="work-description">Notion + desmos</p4>
-                </a>
-                <img src="Image/n0vlnt.jpg" alt="">              
-            </div>
-            <hr class="line-sapcerv2">
-             <div class="work-itemv2">
-                <a href="hairyslickass/" class="text-wrapper">
-                    <h4 class="h4">hairyslickass</h4>
-                    <p4 class="work-description">Guide-books + Logseq</p4>
-                </a>
-                <img src="Image/hairyslickass.jpg" alt="a">
-            </div>
-            <hr class="line-sapcerv2">
-        </div>
-    </section>
-
-    <section id="about-me" class="landing-about">
-        <h4 class="about-title">About Me</h4>
-        <p class="about-description">
-            Hi, I'm Attashii, a 20-year-old graphic 
-            designer and overthinker based in Jakarta. I have a passion for creating 
-            visually captivating designs that evoke emotions and tell stories. 
-            With a keen eye for detail and a love for aesthetics, I strive to bring 
-            my unique perspective to every project I work on. When I'm not designing, 
-            you can find me lost in thought, analyzing the world around me and finding 
-            inspiration in the smallest of things.</p>
-    </section>
-
-    <div class="text-container">
-        <div class="text-animation">
-            <span>jahvuav aehabdahda cabdhadadada</span>
-            <span>jahvuav aehabdahda cabdhadadada</span>
-            <span>jahvuav aehabdahda cabdhadadada</span>
-            <span>jahvuav aehabdahda cabdhadadada</span>
-        </div>
-    </div> 
-
-    <section id="landing-archive" class="collections">
-        <h5 class="archive-title">Collection</h5>
-
-    </section>
-
-    <section id="contact-me" class="landing-contact2">
-        <h4 class="contact-title2">Moots</h4>
-        <div class="grid-contact">
-            <div class="contact-item2">
-                <h4 class="contact-number">01</h4>
-                <p4 class="contact-description">Instagram</p4>
-    
-            </div>
-            <hr class="line-sapcer3">
-             <div class="contact-item2">
-                <h4 class="contact-number">02</h4>
-                <p4 class="contact-description">Email</p4>
-            </div>
-            <hr class="line-sapcer3">
-             <div class="contact-item2">
-                <h4 class="contact-number">03</h4>
-                <p4 class="contact-description">Behance</p4>
-            </div>
-            <hr class="line-sapcer3">
-        </div>
-
-    </section>
-    
-    <footer class="footer-section">
-        <div class="footer-content">
-            <p5>@attashii</p5>
-        </div>
-    </footer>   
     <style>
     body, html, a, button, .work-item img, .work-itemv2, .h4 {
         cursor: url('Image/CursorSmall.png'), auto !important;
@@ -363,8 +365,9 @@
     </style>
     
 
+    <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script-3.js"></script>
     <script src="script-3(button).js"></script>
 
 
