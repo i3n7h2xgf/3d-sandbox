@@ -1,5 +1,124 @@
+document.addEventListener('DOMContentLoaded', () => {
+    let count = 0;
+    let siteIsReady = false;
+    const loaderBox = document.querySelector('.loader-wrapper');
+    const numberText = document.querySelector('.loader-number');
+
+    window.addEventListener('load', () => {
+    siteIsReady = true;
+});
 
 
+// 1. Force the browser to NOT restore scroll position
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}
+
+// 2. Snap to top immediately on page load
+window.scrollTo(0, 0);
+
+// 3. (Optional) Force top again just as the user leaves or refreshes
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+};
+
+
+
+// --- START BAFFLE RIGHT NOW (As the site appears) ---
+const b = baffle(".data");
+b.set({
+  characters: '░▒░ ░██░> ████▓ >█> ░/█>█ ██░░ █<▒ ▓██░ ░/░▒',
+  speed: 120
+});
+b.start();
+
+const Interval = setInterval(() => {
+    // 1. Handle the counting logic
+    if (count < 99) {
+        count++;
+    } else if (siteIsReady) {
+        count = 100;
+    }
+
+    // 2. Update the Text
+    numberText.innerText = count + "%";
+
+    // 3. DYNAMIC BLUR: Calculation (Starts at 15px, goes to 0)
+    let blurVal = 15 - (count * 0.12); 
+    loaderBox.style.filter = `blur(${blurVal}px)`;
+
+    // 4. Close logic (Only need this once!)
+     if (count === 100) {
+        clearInterval(Interval);
+        
+        // 1. Instant focus so it looks crisp while pausing
+        loaderBox.style.filter = 'blur(0px)'; 
+        numberText.innerText = "100%"; // Ensure it shows 100
+
+        // 2. The 0.3s Pause
+        setTimeout(() => {
+          // --- START THE POP/CLOSE ANIMATION ---
+          loaderBox.style.transform = 'scale(0)';
+          loaderBox.style.opacity = '0';
+          document.body.classList.add('active')
+          
+          // 2. MAKE TEXT VISIBLE & REVEAL
+          // We target the element to make it visible now that it's scrambled
+          setTimeout(() => {
+          const textElements = document.querySelectorAll('.data');
+          textElements.forEach(el => el.style.opacity = "1");
+          b.reveal(1000, ); // Start the transition from glitched to real
+          }, 300);
+
+          setTimeout(() => {
+            constnavElements = document.queryselectorAll('.nav-data');
+            const nB = baffle(".nav-data").set({speed: 100}).start();
+            navEelements.forEach(e1 => e1.style.opacity = "0");
+
+            nB.reveal(1200);
+          }, 300);
+        
+          setTimeout(() => {
+              loaderBox.style.display = 'none';
+              document.body.style.overflow = 'auto'; 
+          }, 300); 
+
+        }, 300); // 300ms = 0.3 second pause
+    }
+
+    // 1. Calculate the color (255 down to 0)
+    let colorVal = 255 - (count * 2.55); 
+    loaderBox.style.backgroundColor = `rgb(${colorVal}, ${colorVal}, ${colorVal})`;
+
+    // 2. Flip the text color so you can still see it!
+    // When background is light (high colorVal), text should be black.
+    // When background is dark (low colorVal), text should be white.
+    if (count > 50) {
+        numberText.style.color = "white";
+    } else {
+        numberText.style.color = "black";
+    }
+}, 1); 
+});
+
+
+// Nav-Link Behaviour
+
+document.addEventListener('click', function (e) {
+    const link = e.target.closest('[data-target]');
+    
+    if (link) {
+        const targetId = link.getAttribute('data-target');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+});
 
 // TouchTexture class
 class TouchTexture {
@@ -684,6 +803,7 @@ class App {
   }
 }
 
+
 // Start the app
 const app = new App();
 
@@ -847,6 +967,20 @@ exportAllBtn.addEventListener("click", () => {
   });
 });
 */
+
+let currentScheme = 1;
+const totalSchemes = 5;
+
+document.getElementById('scheme-changer').addEventListener('click', () => {
+  // Move to next scheme
+  currentScheme = (currentScheme % totalSchemes) + 1;
+  
+  // Find the hidden button and click it
+  const hiddenBtn = document.querySelector(`.color-btn[data-scheme="${currentScheme}"]`);
+  if (hiddenBtn) {
+    hiddenBtn.click();
+  }
+});
 
 // Custom cursor
 const cursor = document.querySelector('.custom-cursor');
