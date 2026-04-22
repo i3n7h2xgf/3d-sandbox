@@ -781,26 +781,6 @@ hr {
     min-height: 100vh;
 }
 
-.about-title {
-    margin-top: 130px;
-    font-family: 'Inter', sans-serif;
-    width: 100%;
-    font-size: 23vw; /* Adjust the font size as needed */
-    display: flex;
-    justify-content: center;
-    padding: 10px 50px;
-    margin-bottom: 10px;
-    white-space: nowrap;
-}
-
-.about-description {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    padding: 0 50px;
-    margin-bottom: 20px;
-}
-
 /* Style untuk heteronyms */
 
 .landing-workv2 {
@@ -910,6 +890,77 @@ hr {
 
 .h4:hover {
     opacity: 0.7;
+}
+
+/* landing about me section */
+
+.about-title {
+    margin-top: 130px;
+    font-family: 'Metrik', sans-serif;
+    width: 100%;
+    font-size: 25vw; /* Adjust the font size as needed */
+    display: flex;
+    justify-content: center;
+    padding: 10px 50px;
+    margin-bottom: 0px;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.aboutme-container {
+  position: relative;
+  padding: 80px;
+  overflow: visible;
+}
+
+.aboutme-content {
+  display: flex;
+  align-items: center;
+
+  gap: 40px;
+  max-width: 900px;
+  margin: 0;
+  transform: scale(1.2);
+  transform-origin: left center;
+  position: relative;
+  z-index: 1;
+}
+
+.aboutme-image {
+  
+  z-index: 1;
+  margin-top: -110px;
+}
+
+.aboutme-image img {
+  width: 300px;
+  height: 430px;
+ 
+  object-fit: cover;
+}
+
+.aboutme-hero {
+  font-family: 'Planet Kosmos', sans-serif;
+  font-size: 4rem;
+  margin-left: 0;
+  padding-left: 0;
+  margin-bottom: -30px; /* jarak ke bawah */
+  line-height: 1;
+}
+
+
+.about-description {
+  font-family: 'Metrik', sans-serif;
+  white-space: pre-line; /* space paragraf */
+  text-align: justify;
+  top: 0;
+  margin-left: 0;
+  padding-left: 0;
+  font-size: 15px;    
+  line-height: 1.6; /* jarak baris teks */
+  color: #fff;        
+  margin: 0;
+  
 }
 
 /* Style untuk Text-animation*/
