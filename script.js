@@ -8,19 +8,25 @@ document.addEventListener('DOMContentLoaded', () => {
     siteIsReady = true;
 });
 
+
 if (history.scrollRestoration) {
     history.scrollRestoration = 'manual';
 }
 
+
+
 window.addEventListener('load', () => {
     window.scrollTo(0, 0);
 });
+
 
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
         window.scrollTo(0, 0);
     }
 });
+
+
 
 const b = baffle(".data");
 b.set({
@@ -30,27 +36,36 @@ b.set({
 b.start();
 
 const Interval = setInterval(() => {
+    
     if (count < 99) {
         count++;
     } else if (siteIsReady) {
         count = 100;
     }
 
+    
     numberText.innerText = count + "%";
 
+    
     let blurVal = 15 - (count * 0.12); 
     loaderBox.style.filter = `blur(${blurVal}px)`;
 
+    
      if (count === 100) {
         clearInterval(Interval);
-
+        
+        
         loaderBox.style.filter = 'blur(0px)'; 
-        numberText.innerText = "100%";
-         
+        numberText.innerText = "100%"; 
+
+        
         setTimeout(() => {
+          
           loaderBox.style.transform = 'scale(0)';
           loaderBox.style.opacity = '0';
           document.body.classList.add('active')
+          
+          
           
           setTimeout(() => {
           const textElements = document.querySelectorAll('.data');
@@ -65,7 +80,7 @@ const Interval = setInterval(() => {
 
             nB.reveal(1200);
           }, 300);
-        
+
           setTimeout(() => {
               loaderBox.style.display = 'none';
               document.body.style.overflow = 'auto'; 
@@ -74,9 +89,13 @@ const Interval = setInterval(() => {
         }, 300); 
     }
 
+    
     let colorVal = 255 - (count * 2.55); 
     loaderBox.style.backgroundColor = `rgb(${colorVal}, ${colorVal}, ${colorVal})`;
 
+    
+    
+    
     if (count > 50) {
         numberText.style.color = "white";
     } else {
@@ -84,6 +103,9 @@ const Interval = setInterval(() => {
     }
 }, 1); 
 });
+
+
+
 
 document.addEventListener('click', function (e) {
     const link = e.target.closest('[data-target]');
@@ -101,11 +123,12 @@ document.addEventListener('click', function (e) {
     }
 });
 
+
 class TouchTexture {
   constructor() {
     this.size = 64;
     this.width = this.height = this.size;
-    this.maxAge = 64;
+    this.maxAge = 32;
     this.radius = 0.25 * this.size; 
     this.speed = 1 / this.maxAge;
     this.trail = [];
@@ -126,6 +149,7 @@ class TouchTexture {
   update() {
     this.clear();
     let speed = this.speed;
+    
     for (let i = this.trail.length - 1; i >= 0; i--) {
       const point = this.trail[i];
       let f = point.force * speed * (1 - point.age / this.maxAge);
@@ -196,6 +220,7 @@ class TouchTexture {
     this.ctx.fill();
   }
 }
+
 
 class GradientBackground {
   constructor(sceneManager) {
@@ -279,6 +304,8 @@ class GradientBackground {
               
               float gradientRadius = uGradientSize;
               
+              
+              
               vec2 center1 = vec2(
                 0.5 + sin(time * uSpeed * 0.4) * 0.4,
                 0.5 + cos(time * uSpeed * 0.5) * 0.4
@@ -343,6 +370,7 @@ class GradientBackground {
               float dist11 = length(uv - center11);
               float dist12 = length(uv - center12);
               
+              
               float influence1 = 1.0 - smoothstep(0.0, gradientRadius, dist1);
               float influence2 = 1.0 - smoothstep(0.0, gradientRadius, dist2);
               float influence3 = 1.0 - smoothstep(0.0, gradientRadius, dist3);
@@ -355,6 +383,7 @@ class GradientBackground {
               float influence10 = 1.0 - smoothstep(0.0, gradientRadius, dist10);
               float influence11 = 1.0 - smoothstep(0.0, gradientRadius, dist11);
               float influence12 = 1.0 - smoothstep(0.0, gradientRadius, dist12);
+              
               
               vec2 rotatedUv1 = uv - 0.5;
               float angle1 = time * uSpeed * 0.15;
@@ -377,6 +406,7 @@ class GradientBackground {
               float radialInfluence1 = 1.0 - smoothstep(0.0, 0.8, radialGradient1);
               float radialInfluence2 = 1.0 - smoothstep(0.0, 0.8, radialGradient2);
               
+              
               vec3 color = vec3(0.0);
               color += uColor1 * influence1 * (0.55 + 0.45 * sin(time * uSpeed)) * uColor1Weight;
               color += uColor2 * influence2 * (0.55 + 0.45 * cos(time * uSpeed * 1.2)) * uColor2Weight;
@@ -384,6 +414,7 @@ class GradientBackground {
               color += uColor4 * influence4 * (0.55 + 0.45 * cos(time * uSpeed * 1.3)) * uColor2Weight;
               color += uColor5 * influence5 * (0.55 + 0.45 * sin(time * uSpeed * 1.1)) * uColor1Weight;
               color += uColor6 * influence6 * (0.55 + 0.45 * cos(time * uSpeed * 0.9)) * uColor2Weight;
+              
               
               if (uGradientCount > 6.0) {
                 color += uColor1 * influence7 * (0.55 + 0.45 * sin(time * uSpeed * 1.4)) * uColor1Weight;
@@ -396,19 +427,25 @@ class GradientBackground {
                 color += uColor6 * influence12 * (0.55 + 0.45 * cos(time * uSpeed * 1.9)) * uColor2Weight;
               }
               
+              
               color += mix(uColor1, uColor3, radialInfluence1) * 0.45 * uColor1Weight;
               color += mix(uColor2, uColor4, radialInfluence2) * 0.4 * uColor2Weight;
               
+              
               color = clamp(color, vec3(0.0), vec3(1.0)) * uIntensity;
+              
               
               float luminance = dot(color, vec3(0.299, 0.587, 0.114));
               color = mix(vec3(luminance), color, 1.35);
               
               color = pow(color, vec3(0.92)); 
-
+              
+              
+              
               float brightness1 = length(color);
               float mixFactor1 = max(brightness1 * 1.2, 0.15); 
               color = mix(uDarkNavy, color, mixFactor1);
+              
               
               float maxBrightness = 1.0;
               float brightness = length(color);
@@ -422,13 +459,15 @@ class GradientBackground {
             void main() {
               vec2 uv = vUv;
               
+              
               vec4 touchTex = texture2D(uTouchTexture, uv);
               float vx = -(touchTex.r * 2.0 - 1.0);
               float vy = -(touchTex.g * 2.0 - 1.0);
               float intensity = touchTex.b;
-  
+              
               uv.x += vx * 0.8 * intensity;
               uv.y += vy * 0.8 * intensity;
+              
               
               vec2 center = vec2(0.5);
               float dist = length(uv - center);
@@ -438,19 +477,25 @@ class GradientBackground {
               
               vec3 color = getGradientColor(uv, uTime);
               
+              
               float grainValue = grain(uv, uTime);
               color += grainValue * uGrainIntensity;
+              
               
               float timeShift = uTime * 0.5;
               color.r += sin(timeShift) * 0.02;
               color.g += cos(timeShift * 1.4) * 0.02;
               color.b += sin(timeShift * 1.2) * 0.02;
               
+              
+              
               float brightness2 = length(color);
               float mixFactor2 = max(brightness2 * 1.2, 0.15); 
               color = mix(uDarkNavy, color, mixFactor2);
               
+              
               color = clamp(color, vec3(0.0), vec3(1.0));
+              
               
               float maxBrightness = 1.0;
               float brightness = length(color);
@@ -491,6 +536,7 @@ class GradientBackground {
   }
 }
 
+
 class App {
   constructor() {
     this.renderer = new THREE.WebGLRenderer({
@@ -502,7 +548,7 @@ class App {
     });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); 
-    this.renderer.setAnimationLoop(null);
+    this.renderer.setAnimationLoop(null); 
     document.body.appendChild(this.renderer.domElement);
     this.renderer.domElement.id = "webGLApp";
 
@@ -521,30 +567,36 @@ class App {
     this.gradientBackground = new GradientBackground(this);
     this.gradientBackground.uniforms.uTouchTexture.value = this.touchTexture.texture;
 
+    
     this.colorSchemes = {
       1: {
+        
         color1: new THREE.Vector3(0.15, 0.15, 0.15), 
         color2: new THREE.Vector3(0.05, 0.05, 0.05) 
       },
       2: {
+        
         color1: new THREE.Vector3(1.0, 0.424, 0.314), 
         color2: new THREE.Vector3(0.251, 0.878, 0.816) 
       },
       3: {
+        
         color1: new THREE.Vector3(0.945, 0.353, 0.133), 
-        color2: new THREE.Vector3(0.039, 0.055, 0.153),
+        color2: new THREE.Vector3(0.039, 0.055, 0.153), 
         color3: new THREE.Vector3(0.251, 0.878, 0.816) 
       },
       4: {
+        
         color1: new THREE.Vector3(0.949, 0.4, 0.2), 
         color2: new THREE.Vector3(0.176, 0.42, 0.427), 
         color3: new THREE.Vector3(0.82, 0.686, 0.612) 
       },
       5: {
+        
         color1: new THREE.Vector3(0.945, 0.353, 0.133), 
         color2: new THREE.Vector3(0.0, 0.259, 0.22), 
-        color3: new THREE.Vector3(0.945, 0.353, 0.133),
-        color4: new THREE.Vector3(0.0, 0.0, 0.0),
+        color3: new THREE.Vector3(0.945, 0.353, 0.133), 
+        color4: new THREE.Vector3(0.0, 0.0, 0.0), 
         color5: new THREE.Vector3(0.945, 0.353, 0.133), 
         color6: new THREE.Vector3(0.0, 0.0, 0.0) 
       }
@@ -560,14 +612,17 @@ class App {
     const colors = this.colorSchemes[scheme];
     const uniforms = this.gradientBackground.uniforms;
 
+    
     if (scheme === 3) {
+      
       uniforms.uColor1.value.copy(colors.color1); 
-      uniforms.uColor2.value.copy(colors.color2);
+      uniforms.uColor2.value.copy(colors.color2); 
       uniforms.uColor3.value.copy(colors.color3); 
       uniforms.uColor4.value.copy(colors.color1); 
       uniforms.uColor5.value.copy(colors.color2); 
       uniforms.uColor6.value.copy(colors.color3); 
     } else if (scheme === 4) {
+      
       uniforms.uColor1.value.copy(colors.color1); 
       uniforms.uColor2.value.copy(colors.color2); 
       uniforms.uColor3.value.copy(colors.color3); 
@@ -575,8 +630,9 @@ class App {
       uniforms.uColor5.value.copy(colors.color2); 
       uniforms.uColor6.value.copy(colors.color3); 
     } else if (scheme === 5) {
-      uniforms.uColor1.value.copy(colors.color1);
-      uniforms.uColor2.value.copy(colors.color2);
+      
+      uniforms.uColor1.value.copy(colors.color1); 
+      uniforms.uColor2.value.copy(colors.color2); 
       uniforms.uColor3.value.copy(colors.color3); 
       uniforms.uColor4.value.copy(colors.color4); 
       uniforms.uColor5.value.copy(colors.color5); 
@@ -590,18 +646,19 @@ class App {
       uniforms.uColor6.value.copy(colors.color2);
     }
 
+    
     if (scheme === 1) {
       this.scene.background = new THREE.Color(0x000000); 
       uniforms.uDarkNavy.value.set(0.02, 0.02, 0.02); 
-   
+      
       uniforms.uGradientSize.value = 0.5; 
       uniforms.uGradientCount.value = 25.0; 
       uniforms.uSpeed.value = 0.8; 
-
+      
       uniforms.uColor1Weight.value = 1.2; 
       uniforms.uColor2Weight.value = 1.0; 
     } else if (scheme === 6) {
-        
+      
       this.scene.background = new THREE.Color(0x0a0e27); 
       uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); 
       
@@ -612,76 +669,81 @@ class App {
       uniforms.uColor1Weight.value = 0.5; 
       uniforms.uColor2Weight.value = 1.8; 
     } else if (scheme === 7) {
-     
-      this.scene.background = new THREE.Color(0x0a0e27);
+      
+      this.scene.background = new THREE.Color(0x0a0e27); 
       uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); 
-     
-      uniforms.uGradientSize.value = 0.45;
+      
+      uniforms.uGradientSize.value = 0.45; 
       uniforms.uGradientCount.value = 12.0; 
       uniforms.uSpeed.value = 1.5; 
-     
-      uniforms.uColor1Weight.value = 0.5;
+      
+      uniforms.uColor1Weight.value = 0.5; 
       uniforms.uColor2Weight.value = 1.8; 
     } else if (scheme === 8) {
-     
+      
       this.scene.background = new THREE.Color(0x0a0e27); 
-      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153);
-
-      uniforms.uGradientSize.value = 0.45;
+      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); 
+      
+      uniforms.uGradientSize.value = 0.45; 
       uniforms.uGradientCount.value = 12.0; 
       uniforms.uSpeed.value = 1.5; 
-     
+      
       uniforms.uColor1Weight.value = 0.5; 
       uniforms.uColor2Weight.value = 1.8; 
     } else if (scheme === 5) {
       
       this.scene.background = new THREE.Color(0x0a0e27); 
       uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); 
-        
+      
       uniforms.uGradientSize.value = 0.45; 
-      uniforms.uGradientCount.value = 12.0;
+      uniforms.uGradientCount.value = 12.0; 
       uniforms.uSpeed.value = 1.5; 
-     
+      
       uniforms.uColor1Weight.value = 0.5; 
       uniforms.uColor2Weight.value = 1.8; 
     } else if (scheme === 4) {
       this.scene.background = new THREE.Color(0xffffff); 
-      uniforms.uDarkNavy.value.set(0, 0, 0);
+      uniforms.uDarkNavy.value.set(0, 0, 0); 
     } else if (scheme === 2) {
       this.scene.background = new THREE.Color(0x0a0e27); 
       uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); 
       uniforms.uGradientSize.value = 1.0; 
       uniforms.uGradientCount.value = 6.0; 
       uniforms.uSpeed.value = 1.2; 
-      uniforms.uColor1Weight.value = 1.0;
+      uniforms.uColor1Weight.value = 1.0; 
       uniforms.uColor2Weight.value = 1.0; 
     } else {
-      this.scene.background = new THREE.Color(0x0a0e27);
+      this.scene.background = new THREE.Color(0x0a0e27); 
       uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); 
       uniforms.uGradientSize.value = 1.0; 
-      uniforms.uGradientCount.value = 6.0;
+      uniforms.uGradientCount.value = 6.0; 
       uniforms.uSpeed.value = 1.2; 
-      uniforms.uColor1Weight.value = 1.0;
-      uniforms.uColor2Weight.value = 1.0;
+      uniforms.uColor1Weight.value = 1.0; 
+      uniforms.uColor2Weight.value = 1.0; 
     }
   }
 
+  
+
   init() {
     this.gradientBackground.init();
-      
+    
     this.setColorScheme(1);
 
+    
     this.render();
 
+    
     this.tick();
 
     window.addEventListener("resize", () => this.onResize());
     window.addEventListener("mousemove", (ev) => this.onMouseMove(ev));
     window.addEventListener("touchmove", (ev) => this.onTouchMove(ev));
 
+    
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) {
-          
+        
         this.render();
       }
     });
@@ -725,7 +787,6 @@ class App {
 
   render() {
     const delta = this.clock.getDelta();
-  
     const clampedDelta = Math.min(delta, 0.1);
     this.renderer.render(this.scene, this.camera);
     this.update(clampedDelta);
@@ -815,6 +876,7 @@ let currentScheme = 1;
 const totalSchemes = 5;
 
 document.getElementById('scheme-changer').addEventListener('click', () => {
+
   currentScheme = (currentScheme % totalSchemes) + 1;
   
   const hiddenBtn = document.querySelector(`.color-btn[data-scheme="${currentScheme}"]`);
@@ -835,7 +897,6 @@ window.addEventListener('mousemove', (e) => {
 });
 
 function animate() {
-
     cursorX += (mouseX - cursorX) * 0.9;
     cursorY += (mouseY - cursorY) * 0.9;
 
@@ -890,3 +951,5 @@ document.addEventListener("mousemove", () => {
     pulseFrame = requestAnimationFrame(checkPulse);
   }
 });
+
+
