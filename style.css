@@ -709,6 +709,42 @@ hr {
     font-size: 0.9rem;
 }
 
+.cd-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+
+  cursor: default;
+}
+
+.cd-wrapper img {
+  position: absolute;
+  width: 150%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  height: auto;
+}
+
+.cd-bottom {
+  animation: spin 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.cd-wrapper:hover .cd-bottom {
+  animation-play-state: running;
+}
+
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
 .landing-contact2 {
     min-height: 100vh;
     margin-top: 250px;
