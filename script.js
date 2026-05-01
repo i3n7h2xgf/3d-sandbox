@@ -8,26 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
     siteIsReady = true;
 });
 
-
-// 1. Matikan restorasi otomatis biar browser nggak "sok tau" inget posisi terakhir
 if (history.scrollRestoration) {
     history.scrollRestoration = 'manual';
 }
 
-// 2. Reset scroll tepat saat halaman selesai load (sebelum/saat loader jalan)
-// Ini bakal kena tiap kali lo navigasi antar page atau pencet Back/Forward
 window.addEventListener('load', () => {
     window.scrollTo(0, 0);
 });
 
-// 3. Khusus buat navigasi Back/Forward dari cache browser (BfCache)
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
         window.scrollTo(0, 0);
     }
 });
 
-// --- START BAFFLE RIGHT NOW (As the site appears) ---
 const b = baffle(".data");
 b.set({
   characters: '░▒░ ░██░> ████▓ >█> ░/█>█ ██░░ █<▒ ▓██░ ░/░▒',
@@ -36,41 +30,32 @@ b.set({
 b.start();
 
 const Interval = setInterval(() => {
-    // 1. Handle the counting logic
     if (count < 99) {
         count++;
     } else if (siteIsReady) {
         count = 100;
     }
 
-    // 2. Update the Text
     numberText.innerText = count + "%";
 
-    // 3. DYNAMIC BLUR: Calculation (Starts at 15px, goes to 0)
     let blurVal = 15 - (count * 0.12); 
     loaderBox.style.filter = `blur(${blurVal}px)`;
 
-    // 4. Close logic (Only need this once!)
      if (count === 100) {
         clearInterval(Interval);
-        
-        // 1. Instant focus so it looks crisp while pausing
-        loaderBox.style.filter = 'blur(0px)'; 
-        numberText.innerText = "100%"; // Ensure it shows 100
 
-        // 2. The 0.3s Pause
+        loaderBox.style.filter = 'blur(0px)'; 
+        numberText.innerText = "100%";
+         
         setTimeout(() => {
-          // --- START THE POP/CLOSE ANIMATION ---
           loaderBox.style.transform = 'scale(0)';
           loaderBox.style.opacity = '0';
           document.body.classList.add('active')
           
-          // 2. MAKE TEXT VISIBLE & REVEAL
-          // We target the element to make it visible now that it's scrambled
           setTimeout(() => {
           const textElements = document.querySelectorAll('.data');
           textElements.forEach(el => el.style.opacity = "1");
-          b.reveal(1000, ); // Start the transition from glitched to real
+          b.reveal(1000, ); 
           }, 300);
 
           setTimeout(() => {
@@ -86,16 +71,12 @@ const Interval = setInterval(() => {
               document.body.style.overflow = 'auto'; 
           }, 300); 
 
-        }, 300); // 300ms = 0.3 second pause
+        }, 300); 
     }
 
-    // 1. Calculate the color (255 down to 0)
     let colorVal = 255 - (count * 2.55); 
     loaderBox.style.backgroundColor = `rgb(${colorVal}, ${colorVal}, ${colorVal})`;
 
-    // 2. Flip the text color so you can still see it!
-    // When background is light (high colorVal), text should be black.
-    // When background is dark (low colorVal), text should be white.
     if (count > 50) {
         numberText.style.color = "white";
     } else {
@@ -103,9 +84,6 @@ const Interval = setInterval(() => {
     }
 }, 1); 
 });
-
-
-// Nav-Link Behaviour
 
 document.addEventListener('click', function (e) {
     const link = e.target.closest('[data-target]');
@@ -123,13 +101,12 @@ document.addEventListener('click', function (e) {
     }
 });
 
-// TouchTexture class
 class TouchTexture {
   constructor() {
     this.size = 64;
     this.width = this.height = this.size;
     this.maxAge = 64;
-    this.radius = 0.25 * this.size; // Much larger touch radius for more obvious effect
+    this.radius = 0.25 * this.size; 
     this.speed = 1 / this.maxAge;
     this.trail = [];
     this.last = null;
@@ -149,7 +126,6 @@ class TouchTexture {
   update() {
     this.clear();
     let speed = this.speed;
-    // Use reverse iteration to safely remove items
     for (let i = this.trail.length - 1; i >= 0; i--) {
       const point = this.trail[i];
       let f = point.force * speed * (1 - point.age / this.maxAge);
@@ -183,7 +159,7 @@ class TouchTexture {
       let d = Math.sqrt(dd);
       vx = dx / d;
       vy = dy / d;
-      force = Math.min(dd * 20000, 2.0); // Much stronger force for very noticeable effect
+      force = Math.min(dd * 20000, 2.0); 
     }
     this.last = { x: point.x, y: point.y };
     this.trail.push({ x: point.x, y: point.y, age: 0, force, vx, vy });
@@ -221,7 +197,6 @@ class TouchTexture {
   }
 }
 
-// GradientBackground class
 class GradientBackground {
   constructor(sceneManager) {
     this.sceneManager = sceneManager;
@@ -231,22 +206,22 @@ class GradientBackground {
       uResolution: {
         value: new THREE.Vector2(window.innerWidth, window.innerHeight)
       },
-      uColor1: { value: new THREE.Vector3(0.945, 0.353, 0.133) }, // F15A22 - Orange
-      uColor2: { value: new THREE.Vector3(0.039, 0.055, 0.153) }, // 0a0e27 - Navy Blue
-      uColor3: { value: new THREE.Vector3(0.945, 0.353, 0.133) }, // F15A22 - Orange
-      uColor4: { value: new THREE.Vector3(0.039, 0.055, 0.153) }, // 0a0e27 - Navy Blue
-      uColor5: { value: new THREE.Vector3(0.945, 0.353, 0.133) }, // F15A22 - Orange
-      uColor6: { value: new THREE.Vector3(0.039, 0.055, 0.153) }, // 0a0e27 - Navy Blue
-      uSpeed: { value: 1.2 }, // Faster animation
+      uColor1: { value: new THREE.Vector3(0.945, 0.353, 0.133) }, 
+      uColor2: { value: new THREE.Vector3(0.039, 0.055, 0.153) }, 
+      uColor3: { value: new THREE.Vector3(0.945, 0.353, 0.133) }, 
+      uColor4: { value: new THREE.Vector3(0.039, 0.055, 0.153) }, 
+      uColor5: { value: new THREE.Vector3(0.945, 0.353, 0.133) }, 
+      uColor6: { value: new THREE.Vector3(0.039, 0.055, 0.153) }, 
+      uSpeed: { value: 1.2 }, 
       uIntensity: { value: 1.8 },
       uTouchTexture: { value: null },
       uGrainIntensity: { value: 0.08 },
-      uZoom: { value: 1.0 }, // Zoom/scale control - lower = less zoomed (more visible)
-      uDarkNavy: { value: new THREE.Vector3(0.039, 0.055, 0.153) }, // #0a0e27 - Dark navy base color
-      uGradientSize: { value: 1.0 }, // Control gradient size (smaller = more gradients)
-      uGradientCount: { value: 6.0 }, // Number of gradient centers
-      uColor1Weight: { value: 1.0 }, // Weight for color1 (orange) - reduce for more navy
-      uColor2Weight: { value: 1.0 } // Weight for color2 (navy) - increase for more navy
+      uZoom: { value: 1.0 }, 
+      uDarkNavy: { value: new THREE.Vector3(0.039, 0.055, 0.153) }, 
+      uGradientSize: { value: 1.0 }, 
+      uGradientCount: { value: 6.0 }, 
+      uColor1Weight: { value: 1.0 }, 
+      uColor2Weight: { value: 1.0 } 
     };
   }
 
@@ -293,7 +268,7 @@ class GradientBackground {
             
             #define PI 3.14159265359
             
-            // Grain function for film grain effect
+            
             float grain(vec2 uv, float time) {
               vec2 grainUv = uv * uResolution * 0.5;
               float grainValue = fract(sin(dot(grainUv + time, vec2(12.9898, 78.233))) * 43758.5453);
@@ -301,11 +276,9 @@ class GradientBackground {
             }
             
             vec3 getGradientColor(vec2 uv, float time) {
-              // Dynamic gradient size based on uniform
+              
               float gradientRadius = uGradientSize;
               
-              // Multiple animated centers with different speeds and patterns
-              // Support up to 12 centers for more gradient action
               vec2 center1 = vec2(
                 0.5 + sin(time * uSpeed * 0.4) * 0.4,
                 0.5 + cos(time * uSpeed * 0.5) * 0.4
@@ -331,7 +304,7 @@ class GradientBackground {
                 0.5 + sin(time * uSpeed * 0.65) * 0.5
               );
               
-              // Additional centers for more gradient action (7-12)
+              
               vec2 center7 = vec2(
                 0.5 + sin(time * uSpeed * 0.55) * 0.38,
                 0.5 + cos(time * uSpeed * 0.48) * 0.42
@@ -370,7 +343,6 @@ class GradientBackground {
               float dist11 = length(uv - center11);
               float dist12 = length(uv - center12);
               
-              // Smaller, tighter influence areas based on uGradientSize
               float influence1 = 1.0 - smoothstep(0.0, gradientRadius, dist1);
               float influence2 = 1.0 - smoothstep(0.0, gradientRadius, dist2);
               float influence3 = 1.0 - smoothstep(0.0, gradientRadius, dist3);
@@ -384,7 +356,6 @@ class GradientBackground {
               float influence11 = 1.0 - smoothstep(0.0, gradientRadius, dist11);
               float influence12 = 1.0 - smoothstep(0.0, gradientRadius, dist12);
               
-              // Multiple rotation layers for depth
               vec2 rotatedUv1 = uv - 0.5;
               float angle1 = time * uSpeed * 0.15;
               rotatedUv1 = vec2(
@@ -406,7 +377,6 @@ class GradientBackground {
               float radialInfluence1 = 1.0 - smoothstep(0.0, 0.8, radialGradient1);
               float radialInfluence2 = 1.0 - smoothstep(0.0, 0.8, radialGradient2);
               
-              // Blend all colors with dynamic intensities - increased for more contrast
               vec3 color = vec3(0.0);
               color += uColor1 * influence1 * (0.55 + 0.45 * sin(time * uSpeed)) * uColor1Weight;
               color += uColor2 * influence2 * (0.55 + 0.45 * cos(time * uSpeed * 1.2)) * uColor2Weight;
@@ -415,7 +385,6 @@ class GradientBackground {
               color += uColor5 * influence5 * (0.55 + 0.45 * sin(time * uSpeed * 1.1)) * uColor1Weight;
               color += uColor6 * influence6 * (0.55 + 0.45 * cos(time * uSpeed * 0.9)) * uColor2Weight;
               
-              // Add extra centers if uGradientCount > 6
               if (uGradientCount > 6.0) {
                 color += uColor1 * influence7 * (0.55 + 0.45 * sin(time * uSpeed * 1.4)) * uColor1Weight;
                 color += uColor2 * influence8 * (0.55 + 0.45 * cos(time * uSpeed * 1.5)) * uColor2Weight;
@@ -427,26 +396,20 @@ class GradientBackground {
                 color += uColor6 * influence12 * (0.55 + 0.45 * cos(time * uSpeed * 1.9)) * uColor2Weight;
               }
               
-              // Add radial overlays - increased for more contrast, with color weighting
               color += mix(uColor1, uColor3, radialInfluence1) * 0.45 * uColor1Weight;
               color += mix(uColor2, uColor4, radialInfluence2) * 0.4 * uColor2Weight;
               
-              // Clamp and apply intensity
               color = clamp(color, vec3(0.0), vec3(1.0)) * uIntensity;
               
-              // Enhanced color saturation for more vibrant look
               float luminance = dot(color, vec3(0.299, 0.587, 0.114));
               color = mix(vec3(luminance), color, 1.35);
               
-              color = pow(color, vec3(0.92)); // Slight gamma adjustment for better contrast
-              
-              // Ensure minimum brightness (navy blue base instead of grey/black)
-              // Use higher threshold to ensure navy blue shows through in low-intensity areas
+              color = pow(color, vec3(0.92)); 
+
               float brightness1 = length(color);
-              float mixFactor1 = max(brightness1 * 1.2, 0.15); // Higher threshold for navy blue base
+              float mixFactor1 = max(brightness1 * 1.2, 0.15); 
               color = mix(uDarkNavy, color, mixFactor1);
               
-              // Cap maximum brightness - increased for more contrast
               float maxBrightness = 1.0;
               float brightness = length(color);
               if (brightness > maxBrightness) {
@@ -459,16 +422,14 @@ class GradientBackground {
             void main() {
               vec2 uv = vUv;
               
-              // Apply water distortion from touch texture - very strong
               vec4 touchTex = texture2D(uTouchTexture, uv);
               float vx = -(touchTex.r * 2.0 - 1.0);
               float vy = -(touchTex.g * 2.0 - 1.0);
               float intensity = touchTex.b;
-              // Much increased distortion strength for very obvious effect
+  
               uv.x += vx * 0.8 * intensity;
               uv.y += vy * 0.8 * intensity;
               
-              // Combined ripple and wave effect for better performance
               vec2 center = vec2(0.5);
               float dist = length(uv - center);
               float ripple = sin(dist * 20.0 - uTime * 3.0) * 0.04 * intensity;
@@ -477,26 +438,20 @@ class GradientBackground {
               
               vec3 color = getGradientColor(uv, uTime);
               
-              // Apply grain effect
               float grainValue = grain(uv, uTime);
               color += grainValue * uGrainIntensity;
               
-              // Subtle color shifting - optimized with single calculation
               float timeShift = uTime * 0.5;
               color.r += sin(timeShift) * 0.02;
               color.g += cos(timeShift * 1.4) * 0.02;
               color.b += sin(timeShift * 1.2) * 0.02;
               
-              // Ensure minimum brightness (navy blue base instead of grey/black)
-              // Use higher threshold to ensure navy blue shows through in low-intensity areas
               float brightness2 = length(color);
-              float mixFactor2 = max(brightness2 * 1.2, 0.15); // Higher threshold for navy blue base
+              float mixFactor2 = max(brightness2 * 1.2, 0.15); 
               color = mix(uDarkNavy, color, mixFactor2);
               
-              // Clamp to valid color range
               color = clamp(color, vec3(0.0), vec3(1.0));
               
-              // Cap maximum brightness - increased for more contrast
               float maxBrightness = 1.0;
               float brightness = length(color);
               if (brightness > maxBrightness) {
@@ -536,7 +491,6 @@ class GradientBackground {
   }
 }
 
-// App class
 class App {
   constructor() {
     this.renderer = new THREE.WebGLRenderer({
@@ -547,8 +501,8 @@ class App {
       depth: false
     });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap pixel ratio for performance
-    this.renderer.setAnimationLoop(null); // We'll use our own tick loop
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); 
+    this.renderer.setAnimationLoop(null);
     document.body.appendChild(this.renderer.domElement);
     this.renderer.domElement.id = "webGLApp";
 
@@ -560,45 +514,39 @@ class App {
     );
     this.camera.position.z = 50;
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x0a0e27); // Dark navy
+    this.scene.background = new THREE.Color(0x0a0e27); 
     this.clock = new THREE.Clock();
 
     this.touchTexture = new TouchTexture();
     this.gradientBackground = new GradientBackground(this);
     this.gradientBackground.uniforms.uTouchTexture.value = this.touchTexture.texture;
 
-    // Color schemes
     this.colorSchemes = {
       1: {
-        // Orange + Navy Blue
-        color1: new THREE.Vector3(0.15, 0.15, 0.15), // F15A22 - Orange
-        color2: new THREE.Vector3(0.05, 0.05, 0.05) // 0a0e27 - Navy Blue
+        color1: new THREE.Vector3(0.15, 0.15, 0.15), 
+        color2: new THREE.Vector3(0.05, 0.05, 0.05) 
       },
       2: {
-        // Turquoise + Coral Red-Orange
-        color1: new THREE.Vector3(1.0, 0.424, 0.314), // FF6C50 - Coral Red-Orange
-        color2: new THREE.Vector3(0.251, 0.878, 0.816) // 40E0D0 - Turquoise
+        color1: new THREE.Vector3(1.0, 0.424, 0.314), 
+        color2: new THREE.Vector3(0.251, 0.878, 0.816) 
       },
       3: {
-        // Orange + Navy + Turquoise (identical to scheme 1 but with turquoise added)
-        color1: new THREE.Vector3(0.945, 0.353, 0.133), // F15A22 - Orange
-        color2: new THREE.Vector3(0.039, 0.055, 0.153), // 0a0e27 - Navy Blue
-        color3: new THREE.Vector3(0.251, 0.878, 0.816) // 40E0D0 - Turquoise
+        color1: new THREE.Vector3(0.945, 0.353, 0.133), 
+        color2: new THREE.Vector3(0.039, 0.055, 0.153),
+        color3: new THREE.Vector3(0.251, 0.878, 0.816) 
       },
       4: {
-        // Based on Scheme 3: F26633 + 2D6B6D + D1AF9C
-        color1: new THREE.Vector3(0.949, 0.4, 0.2), // F26633 - Orange/Coral
-        color2: new THREE.Vector3(0.176, 0.42, 0.427), // 2D6B6D - Teal/Blue-Green
-        color3: new THREE.Vector3(0.82, 0.686, 0.612) // D1AF9C - Beige/Peach
+        color1: new THREE.Vector3(0.949, 0.4, 0.2), 
+        color2: new THREE.Vector3(0.176, 0.42, 0.427), 
+        color3: new THREE.Vector3(0.82, 0.686, 0.612) 
       },
       5: {
-        // F15A22 + 004238 + F15A22 + 000000 + F15A22 + 000000
-        color1: new THREE.Vector3(0.945, 0.353, 0.133), // F15A22 - Orange
-        color2: new THREE.Vector3(0.0, 0.259, 0.22), // 004238 - Dark Teal (0, 66, 56)
-        color3: new THREE.Vector3(0.945, 0.353, 0.133), // F15A22 - Orange
-        color4: new THREE.Vector3(0.0, 0.0, 0.0), // 000000 - Black
-        color5: new THREE.Vector3(0.945, 0.353, 0.133), // F15A22 - Orange
-        color6: new THREE.Vector3(0.0, 0.0, 0.0) // 000000 - Black
+        color1: new THREE.Vector3(0.945, 0.353, 0.133), 
+        color2: new THREE.Vector3(0.0, 0.259, 0.22), 
+        color3: new THREE.Vector3(0.945, 0.353, 0.133),
+        color4: new THREE.Vector3(0.0, 0.0, 0.0),
+        color5: new THREE.Vector3(0.945, 0.353, 0.133), 
+        color6: new THREE.Vector3(0.0, 0.0, 0.0) 
       }
     };
     this.currentScheme = 1;
@@ -612,31 +560,27 @@ class App {
     const colors = this.colorSchemes[scheme];
     const uniforms = this.gradientBackground.uniforms;
 
-    // Update all color uniforms
     if (scheme === 3) {
-      // Scheme 3: Orange + Navy + Turquoise (identical to scheme 1 but with turquoise)
-      uniforms.uColor1.value.copy(colors.color1); // Orange
-      uniforms.uColor2.value.copy(colors.color2); // Navy
-      uniforms.uColor3.value.copy(colors.color3); // Turquoise
-      uniforms.uColor4.value.copy(colors.color1); // Orange
-      uniforms.uColor5.value.copy(colors.color2); // Navy
-      uniforms.uColor6.value.copy(colors.color3); // Turquoise
+      uniforms.uColor1.value.copy(colors.color1); 
+      uniforms.uColor2.value.copy(colors.color2);
+      uniforms.uColor3.value.copy(colors.color3); 
+      uniforms.uColor4.value.copy(colors.color1); 
+      uniforms.uColor5.value.copy(colors.color2); 
+      uniforms.uColor6.value.copy(colors.color3); 
     } else if (scheme === 4) {
-      // Scheme 4: Based on Scheme 3 with F26633, 2D6B6D, D1AF9C
-      uniforms.uColor1.value.copy(colors.color1); // F26633 - Orange/Coral
-      uniforms.uColor2.value.copy(colors.color2); // 2D6B6D - Teal/Blue-Green
-      uniforms.uColor3.value.copy(colors.color3); // D1AF9C - Beige/Peach
-      uniforms.uColor4.value.copy(colors.color1); // F26633 - Orange/Coral
-      uniforms.uColor5.value.copy(colors.color2); // 2D6B6D - Teal/Blue-Green
-      uniforms.uColor6.value.copy(colors.color3); // D1AF9C - Beige/Peach
+      uniforms.uColor1.value.copy(colors.color1); 
+      uniforms.uColor2.value.copy(colors.color2); 
+      uniforms.uColor3.value.copy(colors.color3); 
+      uniforms.uColor4.value.copy(colors.color1); 
+      uniforms.uColor5.value.copy(colors.color2); 
+      uniforms.uColor6.value.copy(colors.color3); 
     } else if (scheme === 5) {
-      // Scheme 5: F15A22 + 004238 + F15A22 + 000000 + F15A22 + 000000
-      uniforms.uColor1.value.copy(colors.color1); // F15A22 - Orange
-      uniforms.uColor2.value.copy(colors.color2); // 004238 - Dark Teal
-      uniforms.uColor3.value.copy(colors.color3); // F15A22 - Orange
-      uniforms.uColor4.value.copy(colors.color4); // 000000 - Black
-      uniforms.uColor5.value.copy(colors.color5); // F15A22 - Orange
-      uniforms.uColor6.value.copy(colors.color6); // 000000 - Black
+      uniforms.uColor1.value.copy(colors.color1);
+      uniforms.uColor2.value.copy(colors.color2);
+      uniforms.uColor3.value.copy(colors.color3); 
+      uniforms.uColor4.value.copy(colors.color4); 
+      uniforms.uColor5.value.copy(colors.color5); 
+      uniforms.uColor6.value.copy(colors.color6); 
     } else {
       uniforms.uColor1.value.copy(colors.color1);
       uniforms.uColor2.value.copy(colors.color2);
@@ -646,107 +590,102 @@ class App {
       uniforms.uColor6.value.copy(colors.color2);
     }
 
-    // Update background color and base color
     if (scheme === 1) {
-      this.scene.background = new THREE.Color(0x000000); // Navy blue for scheme 1
-      uniforms.uDarkNavy.value.set(0.02, 0.02, 0.02); // #0a0e27 - Navy blue base color
-      // More gradient action: smaller gradients, more of them
-      uniforms.uGradientSize.value = 0.5; // Smaller gradient radius for more defined gradients
-      uniforms.uGradientCount.value = 25.0; // More gradient centers (12 instead of 6)
-      uniforms.uSpeed.value = 0.8; // Slightly faster for more movement
-      // Balance colors: reduce orange, increase navy
-      uniforms.uColor1Weight.value = 1.2; // Reduce orange intensity
-      uniforms.uColor2Weight.value = 1.0; // Increase navy intensity
+      this.scene.background = new THREE.Color(0x000000); 
+      uniforms.uDarkNavy.value.set(0.02, 0.02, 0.02); 
+   
+      uniforms.uGradientSize.value = 0.5; 
+      uniforms.uGradientCount.value = 25.0; 
+      uniforms.uSpeed.value = 0.8; 
+
+      uniforms.uColor1Weight.value = 1.2; 
+      uniforms.uColor2Weight.value = 1.0; 
     } else if (scheme === 6) {
-      // Scheme 6: Identical to scheme 1 but with Orange, Navy, and Turquoise
-      this.scene.background = new THREE.Color(0x0a0e27); // Navy blue (same as scheme 1)
-      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); // #0a0e27 - Navy blue base color (same as scheme 1)
-      // More gradient action: smaller gradients, more of them (same as scheme 1)
-      uniforms.uGradientSize.value = 0.45; // Smaller gradient radius for more defined gradients
-      uniforms.uGradientCount.value = 12.0; // More gradient centers (12 instead of 6)
-      uniforms.uSpeed.value = 1.5; // Slightly faster for more movement
-      // Balance colors: reduce orange, increase navy (same as scheme 1)
-      uniforms.uColor1Weight.value = 0.5; // Reduce orange intensity
-      uniforms.uColor2Weight.value = 1.8; // Increase navy intensity
+        
+      this.scene.background = new THREE.Color(0x0a0e27); 
+      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); 
+      
+      uniforms.uGradientSize.value = 0.45; 
+      uniforms.uGradientCount.value = 12.0; 
+      uniforms.uSpeed.value = 1.5; 
+      
+      uniforms.uColor1Weight.value = 0.5; 
+      uniforms.uColor2Weight.value = 1.8; 
     } else if (scheme === 7) {
-      // Scheme 7: Based on Scheme 6 with F26633, 2D6B6D, D1AF9C (same settings as Scheme 6)
-      this.scene.background = new THREE.Color(0x0a0e27); // Navy blue (same as scheme 6)
-      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); // #0a0e27 - Navy blue base color (same as scheme 6)
-      // More gradient action: smaller gradients, more of them (same as scheme 6)
-      uniforms.uGradientSize.value = 0.45; // Smaller gradient radius for more defined gradients
-      uniforms.uGradientCount.value = 12.0; // More gradient centers (12 instead of 6)
-      uniforms.uSpeed.value = 1.5; // Slightly faster for more movement
-      // Balance colors: same as scheme 6
-      uniforms.uColor1Weight.value = 0.5; // Reduce orange/coral intensity
-      uniforms.uColor2Weight.value = 1.8; // Increase teal intensity
+     
+      this.scene.background = new THREE.Color(0x0a0e27);
+      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); 
+     
+      uniforms.uGradientSize.value = 0.45;
+      uniforms.uGradientCount.value = 12.0; 
+      uniforms.uSpeed.value = 1.5; 
+     
+      uniforms.uColor1Weight.value = 0.5;
+      uniforms.uColor2Weight.value = 1.8; 
     } else if (scheme === 8) {
-      // Scheme 8: Identical to Scheme 1
-      this.scene.background = new THREE.Color(0x0a0e27); // Navy blue for scheme 8
-      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); // #0a0e27 - Navy blue base color
-      // More gradient action: smaller gradients, more of them
-      uniforms.uGradientSize.value = 0.45; // Smaller gradient radius for more defined gradients
-      uniforms.uGradientCount.value = 12.0; // More gradient centers (12 instead of 6)
-      uniforms.uSpeed.value = 1.5; // Slightly faster for more movement
-      // Balance colors: reduce orange, increase navy
-      uniforms.uColor1Weight.value = 0.5; // Reduce orange intensity
-      uniforms.uColor2Weight.value = 1.8; // Increase navy intensity
+     
+      this.scene.background = new THREE.Color(0x0a0e27); 
+      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153);
+
+      uniforms.uGradientSize.value = 0.45;
+      uniforms.uGradientCount.value = 12.0; 
+      uniforms.uSpeed.value = 1.5; 
+     
+      uniforms.uColor1Weight.value = 0.5; 
+      uniforms.uColor2Weight.value = 1.8; 
     } else if (scheme === 5) {
-      // Scheme 5: Same settings as Scheme 1 but with F15A22 + 004238 + F15A22 + 000000 + F15A22 + 000000
-      this.scene.background = new THREE.Color(0x0a0e27); // Navy blue for scheme 5 (same as scheme 1)
-      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); // #0a0e27 - Navy blue base color (same as scheme 1)
-      // More gradient action: smaller gradients, more of them (same as scheme 1)
-      uniforms.uGradientSize.value = 0.45; // Smaller gradient radius for more defined gradients
-      uniforms.uGradientCount.value = 12.0; // More gradient centers (12 instead of 6)
-      uniforms.uSpeed.value = 1.5; // Slightly faster for more movement
-      // Balance colors: reduce orange, increase navy (same as scheme 1)
-      uniforms.uColor1Weight.value = 0.5; // Reduce orange intensity
-      uniforms.uColor2Weight.value = 1.8; // Increase navy intensity
+      
+      this.scene.background = new THREE.Color(0x0a0e27); 
+      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); 
+        
+      uniforms.uGradientSize.value = 0.45; 
+      uniforms.uGradientCount.value = 12.0;
+      uniforms.uSpeed.value = 1.5; 
+     
+      uniforms.uColor1Weight.value = 0.5; 
+      uniforms.uColor2Weight.value = 1.8; 
     } else if (scheme === 4) {
-      this.scene.background = new THREE.Color(0xffffff); // Off-white for scheme 4
-      uniforms.uDarkNavy.value.set(0, 0, 0); // #FAFAFA - Off-white base
+      this.scene.background = new THREE.Color(0xffffff); 
+      uniforms.uDarkNavy.value.set(0, 0, 0);
     } else if (scheme === 2) {
-      this.scene.background = new THREE.Color(0x0a0e27); // Default dark navy for scheme 2
-      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); // #0a0e27 - Default dark navy
-      uniforms.uGradientSize.value = 1.0; // Default size
-      uniforms.uGradientCount.value = 6.0; // Default count
-      uniforms.uSpeed.value = 1.2; // Default speed
-      uniforms.uColor1Weight.value = 1.0; // Default weight
-      uniforms.uColor2Weight.value = 1.0; // Default weight
+      this.scene.background = new THREE.Color(0x0a0e27); 
+      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); 
+      uniforms.uGradientSize.value = 1.0; 
+      uniforms.uGradientCount.value = 6.0; 
+      uniforms.uSpeed.value = 1.2; 
+      uniforms.uColor1Weight.value = 1.0;
+      uniforms.uColor2Weight.value = 1.0; 
     } else {
-      this.scene.background = new THREE.Color(0x0a0e27); // Default dark navy
-      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); // #0a0e27 - Default dark navy
-      uniforms.uGradientSize.value = 1.0; // Default size
-      uniforms.uGradientCount.value = 6.0; // Default count
-      uniforms.uSpeed.value = 1.2; // Default speed
-      uniforms.uColor1Weight.value = 1.0; // Default weight
-      uniforms.uColor2Weight.value = 1.0; // Default weight
+      this.scene.background = new THREE.Color(0x0a0e27);
+      uniforms.uDarkNavy.value.set(0.039, 0.055, 0.153); 
+      uniforms.uGradientSize.value = 1.0; 
+      uniforms.uGradientCount.value = 6.0;
+      uniforms.uSpeed.value = 1.2; 
+      uniforms.uColor1Weight.value = 1.0;
+      uniforms.uColor2Weight.value = 1.0;
     }
   }
 
   init() {
     this.gradientBackground.init();
-    // Apply Scheme 1 settings on startup
+      
     this.setColorScheme(1);
 
-    // Force initial render to wake up the browser
     this.render();
 
-    // Start animation loop
     this.tick();
 
     window.addEventListener("resize", () => this.onResize());
     window.addEventListener("mousemove", (ev) => this.onMouseMove(ev));
     window.addEventListener("touchmove", (ev) => this.onTouchMove(ev));
 
-    // Handle visibility changes to prevent throttling
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) {
-        // Force render when page becomes visible
+          
         this.render();
       }
     });
 
-    // Wake up animation on any user interaction
     const wakeUpAnimation = () => {
       this.render();
       window.removeEventListener("click", wakeUpAnimation);
@@ -786,7 +725,7 @@ class App {
 
   render() {
     const delta = this.clock.getDelta();
-    // Only update if delta is reasonable (prevents large jumps)
+  
     const clampedDelta = Math.min(delta, 0.1);
     this.renderer.render(this.scene, this.camera);
     this.update(clampedDelta);
@@ -794,7 +733,6 @@ class App {
 
   tick() {
     this.render();
-    // Use arrow function to maintain context and ensure continuous rendering
     requestAnimationFrame(() => this.tick());
   }
 
@@ -807,62 +745,33 @@ class App {
 }
 
 
-// Start the app
 const app = new App();
 
-// Force animation to start immediately by triggering a render
-// This helps prevent browser throttling of requestAnimationFrame
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", () => {
     app.render();
   });
 } else {
-  // DOM already loaded, force immediate render
   setTimeout(() => app.render(), 0);
 }
 
-// Color scheme buttons
 const colorButtons = document.querySelectorAll(".color-btn");
 colorButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     const scheme = parseInt(btn.dataset.scheme);
     app.setColorScheme(scheme);
 
-    // Update active state
     colorButtons.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
 
-    // Update color pickers when scheme changes
     updateColorPickersFromScheme();
   });
 });
 
-
-// Color Adjuster Panel Functions
 const colorAdjusterPanel = document.getElementById("colorAdjusterPanel");
 const toggleAdjusterBtn = document.getElementById("toggleAdjusterBtn");
 const closeAdjusterBtn = document.getElementById("closeAdjusterBtn");
 
-/*
-// Toggle panel {
-toggleAdjusterBtn.addEventListener("click", () => {
-  colorAdjusterPanel.classList.toggle("open");
-  if (colorAdjusterPanel.classList.contains("open")) {
-    updateColorPickersFromScheme();
-    toggleAdjusterBtn.style.display = "none";
-  } else {
-    toggleAdjusterBtn.style.display = "block";
-  }
-});
-
-
-closeAdjusterBtn.addEventListener("click", () => {
-  colorAdjusterPanel.classList.remove("open");
-  toggleAdjusterBtn.style.display = "block";
-});
-*/
-
-// Convert RGB (0-1) to Hex
 function rgbToHex(r, g, b) {
   const toHex = (n) => {
     const hex = Math.round(n * 255).toString(16);
@@ -871,7 +780,6 @@ function rgbToHex(r, g, b) {
   return "#" + toHex(r) + toHex(g) + toHex(b);
 }
 
-// Convert Hex to RGB (0-1)
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
@@ -883,7 +791,6 @@ function hexToRgb(hex) {
     : null;
 }
 
-// Update color pickers from current scheme
 function updateColorPickersFromScheme() {
   const uniforms = app.gradientBackground.uniforms;
   const colors = [
@@ -904,110 +811,36 @@ function updateColorPickersFromScheme() {
   });
 }
 
-/*
-// Update gradient when color picker changes
-for (let i = 1; i <= 6; i++) {
-  const picker = document.getElementById(`colorPicker${i}`);
-  const display = document.getElementById(`colorValue${i}`);
-
-  picker.addEventListener("input", (e) => {
-    const hex = e.target.value;
-    const rgb = hexToRgb(hex);
-
-    if (rgb) {
-      const uniforms = app.gradientBackground.uniforms;
-      const colorUniform = uniforms[`uColor${i}`];
-
-      if (colorUniform) {
-        colorUniform.value.set(rgb.r, rgb.g, rgb.b);
-        display.value = hex.toUpperCase();
-      }
-    }
-  });
-}
-
-
-// Copy color value
-document.querySelectorAll(".copy-btn").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const colorIndex = e.target.dataset.copy;
-    const display = document.getElementById(`colorValue${colorIndex}`);
-    const text = display.value;
-
-    navigator.clipboard.writeText(text).then(() => {
-      e.target.textContent = "Copied!";
-      e.target.classList.add("copied");
-      setTimeout(() => {
-        e.target.textContent = "Copy";
-        e.target.classList.remove("copied");
-      }, 2000);
-    });
-  });
-});
-
-// Export all colors
-const exportAllBtn = document.getElementById("exportAllBtn");
-exportAllBtn.addEventListener("click", () => {
-  const colors = [];
-  for (let i = 1; i <= 6; i++) {
-    const display = document.getElementById(`colorValue${i}`);
-    colors.push(display.value);
-  }
-
-  const exportText = `Color Scheme:\n${colors
-    .map((c, i) => `Color ${i + 1}: ${c}`)
-    .join("\n")}\n\nHex Array: [${colors.map((c) => `"${c}"`).join(", ")}]`;
-
-  navigator.clipboard.writeText(exportText).then(() => {
-    exportAllBtn.textContent = "Copied!";
-    exportAllBtn.style.background = "rgba(76, 175, 80, 0.3)";
-    exportAllBtn.style.borderColor = "rgba(76, 175, 80, 0.5)";
-    setTimeout(() => {
-      exportAllBtn.textContent = "Export All Colors";
-      exportAllBtn.style.background = "";
-      exportAllBtn.style.borderColor = "";
-    }, 2000);
-  });
-});
-*/
-
 let currentScheme = 1;
 const totalSchemes = 5;
 
 document.getElementById('scheme-changer').addEventListener('click', () => {
-  // Move to next scheme
   currentScheme = (currentScheme % totalSchemes) + 1;
   
-  // Find the hidden button and click it
   const hiddenBtn = document.querySelector(`.color-btn[data-scheme="${currentScheme}"]`);
   if (hiddenBtn) {
     hiddenBtn.click();
   }
 });
 
-// Custom cursor
 const cursor = document.querySelector('.custom-cursor');
 const landingPage = document.getElementById('landing-experimental');
 
-let mouseX = 0, mouseY = 0; // Posisi mouse asli
-let cursorX = 0, cursorY = 0; // Posisi kursor yang bakal kita halusin
+let mouseX = 0, mouseY = 0; 
+let cursorX = 0, cursorY = 0; 
 
-// 1. Update koordinat mouse
 window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
 });
 
-// 2. Fungsi Animasi (Biar Smooth & Cek Visibility Pas Scroll)
 function animate() {
-    // Lerp (Linear Interpolation) biar ada efek "ngikut" yang smooth
-    // 0.1 itu speed-nya, makin kecil makin 'lemot' tapi smooth
+
     cursorX += (mouseX - cursorX) * 0.9;
     cursorY += (mouseY - cursorY) * 0.9;
 
     cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
 
-    // 3. Logic Cek Visibility (Jalan setiap frame, jadi pas scroll langsung respon)
     const rect = landingPage.getBoundingClientRect();
     const isInside = (
         mouseY >= rect.top && 
@@ -1027,10 +860,8 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-// Jalankan loop animasinya
 animate();
 
-// Only start animation when mouse moves
 document.addEventListener(
   "mousemove",
   () => {
@@ -1042,49 +873,6 @@ document.addEventListener(
   { once: false }
 );
 
-// Cursor animation starts on first mouse move
-
-/*
-// Make cursor larger on hover over interactive elements
-const footerLink = document.querySelector(".footer a");
-footerLink.addEventListener("mouseenter", () => {
-  cursor.style.width = "50px";
-  cursor.style.height = "50px";
-  cursor.style.borderWidth = "3px";
-});
-footerLink.addEventListener("mouseleave", () => {
-  cursor.style.width = "40px";
-  cursor.style.height = "40px";
-  cursor.style.borderWidth = "2px";
-});
-
-// Make cursor larger on hover over color buttons
-colorButtons.forEach((btn) => {
-  btn.addEventListener("mouseenter", () => {
-    cursor.style.width = "50px";
-    cursor.style.height = "50px";
-    cursor.style.borderWidth = "3px";
-  });
-  btn.addEventListener("mouseleave", () => {
-    cursor.style.width = "40px";
-    cursor.style.height = "40px";
-    cursor.style.borderWidth = "2px";
-  });
-});
-
-// Make cursor larger on hover over toggle adjuster button
-toggleAdjusterBtn.addEventListener("mouseenter", () => {
-  cursor.style.width = "50px";
-  cursor.style.height = "50px";
-  cursor.style.borderWidth = "3px";
-});
-toggleAdjusterBtn.addEventListener("mouseleave", () => {
-  cursor.style.width = "40px";
-  cursor.style.height = "40px";
-  cursor.style.borderWidth = "2px";
-});
-*/
-// Optimized pulse effect - use requestAnimationFrame instead of setTimeout
 let lastMouseMoveTime = 0;
 let pulseFrame = null;
 function checkPulse() {
@@ -1102,5 +890,3 @@ document.addEventListener("mousemove", () => {
     pulseFrame = requestAnimationFrame(checkPulse);
   }
 });
-
-/* ------- */
