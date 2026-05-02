@@ -580,6 +580,7 @@ hr {
 .aboutme-content {
   display: flex;
   align-items: center;
+  bottom: 70px;
 
   gap: 40px;
   max-width: 900px;
@@ -636,9 +637,6 @@ hr {
     font-size: 4rem;
     letter-spacing: -1.5px;
     text-transform: uppercase;
-
-    margin-top: 20px;
-    margin-bottom: 20px;
     
     width: max-content;
     display: flex;
@@ -668,6 +666,7 @@ hr {
 
 .collection-container {
     display: flex;
+    top: 70px;
     gap: 40px; 
     padding: 50px;
     align-items: flex-start;
