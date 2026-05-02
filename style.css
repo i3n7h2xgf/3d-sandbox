@@ -628,6 +628,7 @@ hr {
 .text-container {
     overflow: hidden;
     width: 100%;
+    bottom: 70px;
     white-space: nowrap;
     display: flex;
 }
@@ -666,7 +667,6 @@ hr {
 
 .collection-container {
     display: flex;
-    top: 70px;
     gap: 40px; 
     padding: 50px;
     align-items: flex-start;
