@@ -636,6 +636,9 @@ hr {
     font-size: 4rem;
     letter-spacing: -1.5px;
     text-transform: uppercase;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
     
     width: max-content;
     display: flex;
