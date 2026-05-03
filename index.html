@@ -494,12 +494,13 @@
     }
     </style>
 
-    <!-- 1. Load library Three.js versi jadul tapi stabil (Global Variable) -->
-    <script src="https://cloudflare.com"></script>
-    <!-- 2. Load GLTFLoader secara manual (No Import) -->
-    <script src="https://cloudflare.com"></script>
-
-    <!-- 3. Panggil script TV lo (HAPUS type="module" nya!) -->
+       <!-- 1. Load Three.js Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- 2. Load GLTFLoader (Legacy version for global usage) -->
+    <script src="https://jsdelivr.net"></script>
+    
+    <!-- 3. Your TV logic script (No type="module") -->
     <script src="tv-logic.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
