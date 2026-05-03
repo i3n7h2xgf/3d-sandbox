@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[untitled]</title> 
+    <title>attashii_</title> 
+    <link rel="stylesheet" href="style-3.css">
     <link rel="icon" href="Image/Logo-icon.jpg">
-    <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +42,7 @@
       
             <div class="landing-footer-controls"> 
                 
-                
+                <!-- Color Scheme Controls -->
                 <div style="display: none !important;">
                     <button class="color-btn active" data-scheme="1">Scheme 1</button>
                     <button class="color-btn" data-scheme="2">Scheme 2</button>
@@ -51,8 +51,88 @@
                     <button class="color-btn" data-scheme="5">Scheme 5</button>
                 </div>
 
-            </div>
+                <!-- Color Adjuster Toggle Button --
+                <button class="toggle-adjuster-btn" id="toggleAdjusterBtn">Adjust Colors</button>--> 
 
+            </div>
+            <!-- Color Adjuster Panel --
+            <div class="color-adjuster-panel" id="colorAdjusterPanel">
+                <div class="color-adjuster-header">
+                <h5 class="color-adjuster-title">Color Adjuster</h5>
+                <button class="color-adjuster-close" id="closeAdjusterBtn">×</button>
+                </div>
+
+                <div class="color-picker-group">
+                <div class="color-picker-label">
+                    <span>Color 1</span>
+                </div>
+                <div class="color-picker-wrapper">
+                    <input type="color" class="color-picker-input" id="colorPicker1" data-color="1">
+                    <input type="text" class="color-value-display" id="colorValue1" readonly>
+                    <button class="copy-btn" data-copy="1">Copy</button>
+                </div>
+                </div>
+
+                <div class="color-picker-group">
+                <div class="color-picker-label">
+                    <span>Color 2</span>
+                </div>
+                <div class="color-picker-wrapper">
+                    <input type="color" class="color-picker-input" id="colorPicker2" data-color="2">
+                    <input type="text" class="color-value-display" id="colorValue2" readonly>
+                    <button class="copy-btn" data-copy="2">Copy</button>
+                </div>
+                </div>
+
+                <div class="color-picker-group">
+                <div class="color-picker-label">
+                    <span>Color 3</span>
+                </div>
+                <div class="color-picker-wrapper">
+                    <input type="color" class="color-picker-input" id="colorPicker3" data-color="3">
+                    <input type="text" class="color-value-display" id="colorValue3" readonly>
+                    <button class="copy-btn" data-copy="3">Copy</button>
+                </div>
+                </div>
+
+                <div class="color-picker-group">
+                <div class="color-picker-label">
+                    <span>Color 4</span>
+                </div>
+                <div class="color-picker-wrapper">
+                    <input type="color" class="color-picker-input" id="colorPicker4" data-color="4">
+                    <input type="text" class="color-value-display" id="colorValue4" readonly>
+                    <button class="copy-btn" data-copy="4">Copy</button>
+                </div>
+                </div>
+
+                <div class="color-picker-group">
+                <div class="color-picker-label">
+                    <span>Color 5</span>
+                </div>
+                <div class="color-picker-wrapper">
+                    <input type="color" class="color-picker-input" id="colorPicker5" data-color="5">
+                    <input type="text" class="color-value-display" id="colorValue5" readonly>
+                    <button class="copy-btn" data-copy="5">Copy</button>
+                </div>
+                </div>
+
+                <div class="color-picker-group">
+                <div class="color-picker-label">
+                    <span>Color 6</span>
+                </div>
+                <div class="color-picker-wrapper">
+                    <input type="color" class="color-picker-input" id="colorPicker6" data-color="6">
+                    <input type="text" class="color-value-display" id="colorValue6" readonly>
+                    <button class="copy-btn" data-copy="6">Copy</button>
+                </div>
+                </div>
+
+
+                <div class="color-adjuster-actions">
+                <button class="export-btn" id="exportAllBtn">Export All Colors</button>
+                </div>
+            </div>--> 
         </section>
 
         <section id="landing-home" class="landing-page">
@@ -63,8 +143,6 @@
                     <p id="current-date" class="data">3.09.2024</p>
                     <p class="data">Jakarta</p>
                 </div>
-
-                
 
                 <div class="grid-hiasan">
                     <div class="logo-text"> 
@@ -90,15 +168,81 @@
                     <a data-target="#work-contentv2" class="nav-link data"> Persona</a>
                     <a data-target="#contact-me" class="nav-link data"> Contact</a>
 
+                    <!-- Language Switcher Niatnya -->
+                    <!--
+
+                    <div class="lang-switch">
+                        <span class="active">ID</span>/<span>EN</span>
+                    </div>
+                    -->
                 </NAV>
             </header>
-        </section>        
+        </section>
+        <!--
+
+        <section id="work-content" class="landing-work">
+            <h2 class="recents-work">Contents</h2>
+            <hr class="line-sapcer">
+                <div class="work-grid">
+                    <div class="work-item">
+                        <a href="https://open.spotify.com/user/31udxypphzdzthcdvhd7o63fdjje?si=b1db9ec8475a4d49">
+                            <img src="Image/spotify.jpg" alt="spotify cover">
+                        </a>
+                        <h3>Spotify playlist</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="https://letterboxd.com/attashii_/">
+                            <img src="Image/letterboxd.jpg" alt="letterboxd cover">
+                        </a>
+                        <h3>Letterboxd</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="https://www.goodreads.com/attashii_"></a>
+                            <img src="Image/goodreads.jpg" alt="goodreads cover">
+                        </a>
+                        <h3>Goodreads</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="html">
+                            <img src="Image/books guide.jpg" alt="books guide cover">
+                        </a>
+                        <h3>Books Guide</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="https://www.raindrop.io/tuff-">
+                            <img src="Image/books guide.jpg" alt="books guide cover">
+                        </a>
+                        <h3>Raindrop</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="html">
+                            <img src="Image/books guide.jpg" alt="books guide cover">
+                        </a>
+                        <h3>Github</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="html">
+                            <img src="Image/books guide.jpg" alt="books guide cover">
+                        </a>
+                        <h3>Medium</h3>
+                    </div>
+                    <div class="work-item">
+                        <a href="html">
+                            <img src="Image/books guide.jpg" alt="books guide cover">
+                        </a>
+                        <h3>Notion</h3>
+                    </div>
+                </div>
+        </section>
+        --> 
+
+        
 
         <section id="work-contentv2" class="landing-workv2">
             <h3 class="recents-workv2">Heteronyms:</h3>
             <div class="work-gridv2">
-               <div class="work-itemv2">
-                    <a href="attashii/"  class="text-wrapper">
+                <div class="work-itemv2">
+                    <a href="attashii.html"  class="text-wrapper">
                         <h4 class="h4">attashii</h4>
                         <p4 class="work-description">Substack + Letterboxd</p4>
                     </a>
@@ -109,7 +253,7 @@
                 </div>
                 <hr class="line-sapcerv2">
                 <div class="work-itemv2">
-                    <a href="rattashii/" class="text-wrapper">
+                    <a href="rattashii.html" class="text-wrapper">
                         <h4 class="h4">rattashii</h4>
                         <p4 class="work-description">Behance + Portfolio</p4>
                     </a>
@@ -120,7 +264,7 @@
                 </div>
                 <hr class="line-sapcerv2">
                 <div class="work-itemv2">
-                    <a href="i3n7h2xgf/" class="text-wrapper">
+                    <a href="i3n7h2xgf.html" class="text-wrapper">
                         <h4 class="h4">i3n7h2xgf</h4>
                         <p4 class="work-description">Obsidian publish + Github</p4>
                     </a>
@@ -131,7 +275,7 @@
                 </div>
                 <hr class="line-sapcerv2">
                 <div class="work-itemv2">
-                    <a href="axelotxxi/" class="text-wrapper">
+                    <a href="axelotxxi.html" class="text-wrapper">
                         <h4 class="h4">axelotxxi</h4>
                         <p4 class="work-description">Raindrop + Spotify</p4>
                     </a>
@@ -142,7 +286,7 @@
                 </div>
                 <hr class="line-sapcerv2">
                 <div class="work-itemv2">
-                    <a href="fallatees/" class="text-wrapper">
+                    <a href="fallatees.html" class="text-wrapper">
                         <h4 class="h4">fallatees</h4>
                         <p4 class="work-description">Medium + Goodreads</p4>
                     </a>
@@ -153,7 +297,7 @@
                 </div>
                 <hr class="line-sapcerv2">
                 <div class="work-itemv2">
-                    <a href="n0vlnt/" class="text-wrapper">
+                    <a href="n0vlnt.html" class="text-wrapper">
                         <h4 class="h4">n0vlnt</h4>
                         <p4 class="work-description">Notion + desmos</p4>
                     </a>
@@ -164,7 +308,7 @@
                 </div>
                 <hr class="line-sapcerv2">
                 <div class="work-itemv2">
-                    <a href="hairyslickass/" class="text-wrapper">
+                    <a href="hairyslickass.html" class="text-wrapper">
                         <h4 class="h4">hairyslickass</h4>
                         <p4 class="work-description">Guide-books + Logseq</p4>
                     </a>
@@ -179,19 +323,27 @@
 
         <section id="about-me" class="landing-about">
             <h4 class="about-title">About Me</h4>
-            <div class="aboutme-container">
+            
+
+                <div class="aboutme-container">
+
+                    div
+                    div
 
                     <div class= "aboutme-content">
                         <div class="aboutme-image">
                             <img src="Image/hairyslickass.jpg" alt="a">
                         </div>
 
+                        
+
                         <div class="aboutme-text">
+
                             <h class="aboutme-hero">CIAO</h>
                             <p class="about-description">
-                            I’m Rowan Campbell, or you can just call me shii (it's my persona's name). I do a bit of everything and honestly I’m a fan of not picking a lane. For me it’s always been about following my curiosity wherever it goes, and as like this; This site is just a spot to keep track of my projects and the stuff I’m currently into.
+                            I'm Rowan Campbell, a multidisciplinary-creative driven by an insatiable curiosity. I live by the motto: "Jack of all trades, expert of all". Rejecting the notion of limits in favor of surmountable obstacles.
                             
-                            I’m a multidisciplinary creative and I like to call myself a jack of all trades. I don't really believe in limits so I’m always out here learning new things. Most of what you see here is just me trying to make sense of logic and aesthetics in my own way. "Amuse-toi bien avec ça!!" or have fun with it.</p> 
+                            My diverse interest enables me to bridge complex gaps across various industries, ensuring every project delivers a unique narrative that meets my rigorous standards for both logic and aesthetics.</p> 
                         </div> 
                         
                     </div>
@@ -201,14 +353,14 @@
 
         <div class="text-container">
             <div class="text-animation">
-                <span>Petit à petit, l'oiseau fait son nid ✦ Hâte-toi lentement ✦ </span>
-                <span>Petit à petit, l'oiseau fait son nid ✦ Hâte-toi lentement ✦ </span>
-                <span>Petit à petit, l'oiseau fait son nid ✦ Hâte-toi lentement ✦ </span>
-                <span>Petit à petit, l'oiseau fait son nid ✦ Hâte-toi lentement ✦ </span>
+                <span>syududu syududu syududu syududu</span>
+                <span>syududu syududu syududu syududu</span>
+                <span>syududu syududu syududu syududu</span>
+                <span>syududu syududu syududu syududu</span>
             </div>
         </div> 
 
-         <section id="landing-archive" class="collections">
+        <section id="landing-archive" class="collections">
             <div class="collection-container">
                 
                 <div class="title-wrapper">
@@ -227,8 +379,7 @@
                         </p>
                     </div>
 
-                    <div class="archive-image">
-                        <img src="Image/archive2.jpg" alt="Archive Image">
+                    <div class="archive-image" id="tv-container">
                         <p class="archive-description">
                             This is a collection of my past works.
                         </p>
@@ -295,7 +446,7 @@
             <h4 class="contact-title2">Moots</h4>
             <div class="grid-contact">
                 <div class="contact-item2">
-                    <a href="https://www.instagram.com/attashii_" class="text-wrapper-2">
+                    <a href="instagram.com/@attashii_" class="text-wrapper-2">
                         <h4 class="contact-number">01</h4>
                         <p4 class="contact-description">Instagram</p4>
                     </a>
@@ -306,20 +457,20 @@
                 </div>
                 <hr class="line-sapcer3">
                 <div class="contact-item2">
-                    <div class="text-wrapper-2">
+                    <a href="instagram.com/@attashii_" class="text-wrapper-2">
                         <h4 class="contact-number">02</h4>
-                        <p4 class="contact-description">un-coded</p4>
-                    </div>
+                        <p4 class="contact-description">Email</p4>
+                    </a>
                     <div class="contact-sub-description">
                         <span>↗</span>
                     </div>
                 </div>
                 <hr class="line-sapcer3">
                 <div class="contact-item2">
-                    <div class="text-wrapper-2">
+                    <a href="instagram.com/@attashii_" class="text-wrapper-2">
                         <h4 class="contact-number">03</h4>
-                        <p4 class="contact-description">un-coded</p4>
-                    </div>
+                        <p4 class="contact-description">Behance</p4>
+                    </a>
                     <div class="contact-sub-description">
                         <span>↗</span>
                     </div>
@@ -338,15 +489,22 @@
     </div>
     
     <style>
-    body, html, a, button, .work-item img, .work-itemv2, .h4, .contact-description, .contact-sub-description, .cd-wrapper, cd-bottom  {
+    body, html, a, button, .work-item img, .work-itemv2, .h4, .contact-description, .contact-sub-description, .cd-wrapper, .cd-bottom, #tv-container {
         cursor: url('Image/CursorSmall.png'), auto !important;
     }
     </style>
-    
+
+    <!-- 1. Load library Three.js versi jadul tapi stabil (Global Variable) -->
+    <script src="https://cloudflare.com"></script>
+    <!-- 2. Load GLTFLoader secara manual (No Import) -->
+    <script src="https://cloudflare.com"></script>
+
+    <!-- 3. Panggil script TV lo (HAPUS type="module" nya!) -->
+    <script src="tv-logic.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script-3.js"></script>
     <script src="script-3(button).js"></script>
 
 
