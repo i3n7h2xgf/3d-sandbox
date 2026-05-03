@@ -28,6 +28,20 @@
 }
 
 @font-face {
+  font-family: 'Artific';
+  font-style: normal;
+  font-weight: normal; 
+  src: url('FONT/Artific/artifictrial-regular.otf'), format('open type');
+}
+
+@font-face {
+  font-family: 'Metrik';
+  font-style: normal;
+  font-weight: normal;
+  src: url('FONT/MetrikTrial Font/MetrikTrial-Medium.otf'), format('open type');
+}
+
+@font-face {
   font-family: 'NeueMontreal';
   font-style: normal;
   font-weight: normal;
@@ -45,9 +59,10 @@
   display: none;
 }
 
+/* Hide scrollbar for IE, Edge and Firefox */
 * {
-  -ms-overflow-style: none;  
-  scrollbar-width: none;  
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .main-wrapper {
@@ -101,8 +116,9 @@ body, html {
   top: 0;
   margin-top: 0;
 
-  filter: blur(10px);
-  transition: filter 0.3s ease, opacity 0.5s ease; 
+  /* ... your existing styles (position: fixed, flex, etc) ... */
+  filter: blur(10px); /* Start blurry */
+  transition: filter 0.3s ease, opacity 0.5s ease; /* Smooth transition */
 }
 
 .loaderWrapper.active {
@@ -155,7 +171,7 @@ body, html {
   transition: clip-path 1.5s cubic-bezier(0.83, 0, 0.17, 1);
 }
 
-
+/* FINISH: Expand when loader finishes */
 body.active #webGLApp {
   clip-path: inset(0% 0% 0% 0%);
 }
@@ -163,7 +179,7 @@ body.active #webGLApp {
 .data {
     opacity: 0;
    
-    
+    /* 0.8s Delay: Background starts at 0s, Text starts at 0.8s */
     transition: opacity 0.8s ease 0.8s, transform 0.8s ease 0.8s;
 }
 
@@ -183,7 +199,6 @@ canvas {
     rgba(0,0,0,0) 100%
   );
 }
-
 .heading {
   position: absolute;
   top: 50%;
@@ -206,7 +221,7 @@ canvas {
 .hero-text {
     display: block;
     font-family: 'Planet Kosmos', sans-serif;
-    font-size: 9.5vw; 
+    font-size: 9.5vw; /* Adjust the font size as needed */
     letter-spacing: 2px;
     margin-top: 90px;
     text-shadow: 0.5px 1px 2px rgb(50, 50, 50), 0 0 1em rgb(186, 186, 186);
@@ -214,6 +229,8 @@ canvas {
     z-index: 100;
     position: absolute;
 }
+
+/* Button Chnager */
 
 .scheme-btn-fixed-wrapper {
  margin-top: -100px;
@@ -231,6 +248,7 @@ canvas {
   border: solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
   
+ 
   color: rgb(255, 255, 255);
   font-family: 'Syne', sans-serif;
   font-size: 10px;
@@ -244,7 +262,334 @@ canvas {
 .scheme-btn-fixed:hover {
   background: rgba(255, 255, 255, 0.2);
   border-color: rgb(255, 255, 255, 0.5);
+
 }
+
+
+/* Show all options in a grid for comparison
+.headings-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4rem;
+  width: 80vw;
+  max-width: 1200px;
+  pointer-events: none;
+}
+
+.color-controls {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+  display: flex;
+  gap: 1rem;
+  pointer-events: auto;
+}
+.color-btn {
+  min-width: 48px;
+  height: 48px;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  color: white;
+  font-family: "Syne", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+.color-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+.color-btn.active {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+ -- Color Adjuster Panel --
+.color-adjuster-panel {
+  position: relative;
+  top: 2rem;
+  left: 2rem;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  min-width: 320px;
+  max-width: 400px;
+  pointer-events: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px); 
+  pointer-events: none;
+}
+
+.color-adjuster-panel.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.color-adjuster-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.color-adjuster-title {
+  color: white;
+  font-family: "Syne", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.color-adjuster-close {
+  position: relative;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+  z-index: 201;
+  pointer-events: auto;
+  
+}
+
+.color-adjuster-close:hover {
+  opacity: 0.7;
+}
+
+.color-picker-group {
+  margin-bottom: 1.25rem;
+}
+
+.color-picker-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.color-picker-wrapper {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.color-picker-input {
+  width: 60px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.color-picker-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-picker-input::-webkit-color-swatch {
+  border: none;
+  border-radius: 6px;
+}
+
+.color-value-display {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  color: white;
+  font-family: "Inter", monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: text;
+  user-select: all;
+  transition: all 0.3s ease;
+}
+
+.color-value-display:hover {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.color-value-display:focus {
+  outline: none;
+  background: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.copy-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.copy-btn.copied {
+  background: rgba(76, 175, 80, 0.3);
+  border-color: rgba(76, 175, 80, 0.5);
+}
+
+.color-adjuster-actions {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 0.75rem;
+}
+
+.export-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem;
+  color: white;
+  font-family: "Syne", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.export-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.landing-footer-controls {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  display: grid;
+  
+  gap: 40px;
+
+  grid-template-columns: repeat(6, auto);
+  justify-content: flex-start; -- Tombol jadi di tengah bawah --
+  align-items: flex-start;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.toggle-adjuster-btn {
+  position: relative;
+  left: 2rem;
+
+
+  z-index: 100;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-family: "Syne", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  pointer-events: auto;
+}
+
+.toggle-adjuster-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+
+.footer {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  color: white;
+  font-family: "Syne", sans-serif;
+  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
+  pointer-events: auto;
+}
+.footer a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+.footer a:hover {
+  opacity: 0.7;
+} 
+  */
 
 .custom-cursor {
   position: fixed;
@@ -263,7 +608,12 @@ canvas {
 
   margin-left: -21px; 
   margin-top: -21px;
+
+   /* Biar muncul/hilangnya smooth */
 }
+
+
+
 
 .custom-cursor::before {
   content: "";
@@ -290,7 +640,7 @@ canvas {
 body {
     background-color: #000000;
     color: #fff;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Artific', sans-serif;
     box-sizing: border-box;
 }
 
@@ -315,13 +665,14 @@ nav, nav a, .data {
 
 .date {
     text-align: left;
+    /* Memberi jarak agar tidak terlalu nempel ke grid hiasan */
     margin-right: 60px; 
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .date p {
     font-size: 1.2rem;
-    color: #fff;
+    color: #fff; /* Atau #555 kalau mau lebih redup */
     text-transform: uppercase;
     letter-spacing: 0px;
     line-height: 1.2;
@@ -329,7 +680,7 @@ nav, nav a, .data {
 
 .grid-hiasan {
     display: grid;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
     grid-template-columns: repeat(4, auto);
     gap: 40px;
     width: 60%;
@@ -337,7 +688,7 @@ nav, nav a, .data {
 }
 
 .logo-text {
-    font-size: 0.7rem; 
+    font-size: 0.7rem; /* Adjust the font size as needed */
     letter-spacing: -0.1px;
     font-weight: 300;
     color: #ffffff;
@@ -346,11 +697,34 @@ nav, nav a, .data {
     font-stretch: semi-condensed;
 }
 
+
+.logo-text {
+    position: relative;
+}
+
+/* Pasang partikel di baris pertama saja */
+.logo-text .data:first-child::before {
+    content: "■"; /* Isi partikelnya */
+    white-space: pre;   /* Biar \A fungsi jadi baris baru */
+    position: absolute; /* KUNCI: Biar melayang & nggak nendang teks bawah */
+    
+    /* Atur posisi di sini */
+    left: -10px;        /* Geser ke kiri (sesuaikan biar nggak tabrakan) */
+    top: 0;             /* Sejajar baris pertama */
+    
+    /* Styling partikel */
+    font-size: 10px;
+    line-height: 0.8;
+    color: inherit;     /* Ikut warna teks asli */
+}
 nav {
     display: grid;
     grid-template-columns: auto auto;
     text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Metrik', sans-serif;
+    font-stretch: semi-condensed;
+
+    
 }
 
 nav a {
@@ -359,8 +733,8 @@ nav a {
     text-decoration: none;
     margin-left: 30px;
     font-size: 0.8rem;
-    letter-spacing: 0.5px;
-    line-height: 1.2;
+    letter-spacing: 1px;
+    line-height: 1.4;
     opacity: 0.2s;
 
     margin-bottom: 0px;
@@ -370,19 +744,25 @@ nav a {
     text-align: left;
 }
 
+/* Animation .data setting for NAV */
 nav a.data:hover {
     pointer-events: auto;
 }
 
+
 .nav-link.data {
-    opacity: 0; 
+    opacity: 0; /* Initial state */ 
     transition: 0.3s ease;
 }
 
+
+
+/* Add 'body.active' or '!important' to ensure hover wins after reveal */
 .nav-link.data:hover {
     opacity: 0.5 !important;
     cursor: default;
     transition: 0.3s ease;
+ /* Hover transition only starts now */
 }
 
 main {
@@ -392,6 +772,9 @@ main {
     height: 100vh;
     padding-bottom: 50px;
 }
+
+
+/* Style untuk landing-work versi 1 */
 
 .recents-work {
     font-family: 'Inter', sans-serif;
@@ -421,12 +804,13 @@ hr {
     padding: 20px 50px;
 
     font-family: 'Open Sans', sans-serif !important;
-    font-size: 1rem; 
+    font-size: 1rem; /* Adjust the font size as needed */
     letter-spacing: 1px;
     font-stretch: semi-condensed;
     gap: 90px 20px;
     
 }
+
 
 .work-item img {
     width: 100%;
@@ -448,6 +832,9 @@ hr {
 .landing-about {
     min-height: 100vh;
 }
+
+
+/* Style untuk heteronyms */
 
 .landing-workv2 {
     min-height: 100vh;
@@ -534,7 +921,6 @@ hr {
 
 .work-itemv2:hover img {
   opacity: 1;
-  
   transition: opacity 0.4s ease-out;
 }
 
@@ -558,11 +944,13 @@ hr {
     opacity: 0.7;
 }
 
+/* landing about me section */
+
 .about-title {
     margin-top: 130px;
     font-family: 'Metrik', sans-serif;
     width: 100%;
-    font-size: 25vw; 
+    font-size: 25vw; /* Adjust the font size as needed */
     display: flex;
     justify-content: center;
     padding: 10px 50px;
@@ -580,7 +968,6 @@ hr {
 .aboutme-content {
   display: flex;
   align-items: center;
-  bottom: 70px;
 
   gap: 40px;
   max-width: 900px;
@@ -592,6 +979,7 @@ hr {
 }
 
 .aboutme-image {
+  
   z-index: 1;
   margin-top: -110px;
 }
@@ -599,6 +987,7 @@ hr {
 .aboutme-image img {
   width: 300px;
   height: 430px;
+ 
   object-fit: cover;
 }
 
@@ -607,28 +996,30 @@ hr {
   font-size: 4rem;
   margin-left: 0;
   padding-left: 0;
-  margin-bottom: -30px; 
+  margin-bottom: -30px; /* jarak ke bawah */
   line-height: 1;
 }
 
 
 .about-description {
   font-family: 'Metrik', sans-serif;
-  white-space: pre-line; 
+  white-space: pre-line; /* space paragraf */
   text-align: justify;
   top: 0;
   margin-left: 0;
   padding-left: 0;
   font-size: 15px;    
-  line-height: 1.6;
+  line-height: 1.6; /* jarak baris teks */
   color: #fff;        
   margin: 0;
+  
 }
+
+/* Style untuk Text-animation*/
 
 .text-container {
     overflow: hidden;
     width: 100%;
-    bottom: 70px;
     white-space: nowrap;
     display: flex;
 }
@@ -665,9 +1056,13 @@ hr {
     }
 }
 
+
+/* Archive Section */
+
+/* Container Utama */
 .collection-container {
     display: flex;
-    gap: 40px; 
+    gap: 30px; 
     padding: 50px;
     align-items: flex-start;
 }
@@ -676,6 +1071,7 @@ hr {
     width: 30%;
 }
 
+/* Bagian Judul (Kiri) */
 .archive-title {
     font-family: 'Perandory', sans-serif;
     flex: 1;
@@ -690,6 +1086,7 @@ hr {
   font-size: 1.2rem;
 }
 
+/* Wrapper Grid (Kanan) */
 .archive-wrapper {
     flex: 3; 
     display: grid;
@@ -697,6 +1094,7 @@ hr {
     gap: 20px; 
 }
 
+/* Styling Tiap Item Gambar */
 .archive-image img {
     width: 100%;
     height: auto;
@@ -711,6 +1109,7 @@ hr {
     font-size: 0.9rem;
 }
 
+/* ------- */
 .cd-wrapper {
   position: relative;
   width: 100%;
@@ -747,6 +1146,46 @@ hr {
   }
 }
 
+/* ------- */
+#tv-container {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Biar ukurannya seragam sama grid lain */
+    position: relative;
+    overflow: hidden;
+    background-color: transparent; /* Biar gak nutupin background section */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 8px; /* Biar dapet vibe rounded yang sama */
+}
+
+/* Styling Canvas Three.js */
+#tv-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    outline: none;
+    cursor: grab; /* Biar user tau ini bisa diinteraksiin */
+}
+
+#tv-container canvas:active {
+    cursor: grabbing;
+}
+
+/* Deskripsi di bawah TV (biar konsisten ama grid lain) */
+#tv-container .archive-description {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    pointer-events: none; /* Biar gak ganggu klik ke TV */
+}
+
+
+/* Style untuk landing-contact */
+
 .landing-contact2 {
     min-height: 100vh;
     margin-top: 250px;
@@ -755,7 +1194,7 @@ hr {
 .contact-title2 {
     font-family: 'Inter', sans-serif;
     width: 100%;
-    font-size: 1rem; 
+    font-size: 1rem; /* Adjust the font size as needed */
     display: flex;
     justify-content: left;
     letter-spacing: -1;
@@ -764,8 +1203,8 @@ hr {
 }
 
 .contact-item2 {
-    display: flex; 
-    justify-content: space-between; 
+    display: flex; /* Ganti dari grid ke flex */
+    justify-content: space-between; /* Ini kunci biar panah ke pojok kanan */
     align-items: center;
     width: 100%;
     padding: 10px 50px;
@@ -776,7 +1215,7 @@ hr {
 
 .text-wrapper-2 {
     display: flex;
-    gap: 30px; 
+    gap: 30px; /* Jarak antara nomor dan tulisan */
     align-items: baseline;
     text-decoration: none;
     color: inherit;
@@ -797,7 +1236,7 @@ hr {
 .contact-sub-description {
     font-family: 'M2P', sans-serif;
     font-size: 5rem;
-    margin-left: auto; 
+    margin-left: auto; /* Memastikan dia dorong ke kanan */
 }
 
 .line-sapcer3 {
@@ -810,17 +1249,19 @@ hr {
     justify-content: center;
 }
 
+/* Footer Section */
+
 .footer-section {
     width: 100%;
-    padding: 40px 50px; 
-    margin-top: auto;  
+    padding: 40px 50px; /* Samakan padding 50px-mu tadi biar lurus vertikal */
+    margin-top: auto;   /* Jika pakai flexbox di body, ini bakal dorong ke bawah */
 }
 
 .footer-content {
     font-family: 'craketest', sans-serif;
     font-size: 0.5rem;
     opacity: 0.7;
-    text-align: center; 
+    text-align: center; /* Atau left, sesuaikan gaya ISTJ/ENTP kamu */
     text-transform: uppercase;
     letter-spacing: 2px;
 }
