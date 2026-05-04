@@ -360,6 +360,19 @@
             </div>
         </div> 
 
+        <!-- GSAP untuk animasi smooth -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        
+        <!-- Import Map untuk Three.js JSM Modules -->
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+                }
+            }
+        </script>
+
         <section id="landing-archive" class="collections">
             <div class="collection-container">
                 
@@ -494,15 +507,10 @@
     }
     </style>
 
-       <!-- 1. Load Three.js Core -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
-    <!-- 2. Load GLTFLoader (Legacy version for global usage) -->
-    <script src="https://unpkg.com"></script>
+    <!-- Hubungkan ke file JS lo -->
+    <script type="module" src="tv-logic.js"></script>
     
-    <!-- 3. Your TV logic script (No type="module") -->
-    <script src="tv-logic.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
