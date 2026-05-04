@@ -12,7 +12,7 @@
     scene.add(new THREE.AmbientLight(0xffffff, 2));
 
     const loader = new THREE.GLTFLoader(); // Pake THREE.GLTFLoader
-    loader.load('yagitu.glb', (gltf) => {
+    loader.load('retrotv.glb', (gltf) => {
         const tv = gltf.scene;
         scene.add(tv);
         
@@ -21,7 +21,7 @@
         const size = box.getSize(new THREE.Vector3());
         camera.position.z = Math.max(size.x, size.y) * 2;
         
-        console.log("TV MUNCUL!");
+        console.log("bisa tuh!");
 
         function animate() {
             requestAnimationFrame(animate);
@@ -29,5 +29,5 @@
             renderer.render(scene, camera);
         }
         animate();
-    }, undefined, (err) => console.error("File GLB gak ketemu:", err));
+    }, undefined, (err) => console.error("File GLB g ketemu:", err));
 })();
