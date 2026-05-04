@@ -1,7 +1,16 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-// 1. Inisialisasi Container & Scene
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('tv-container');
+    
+    // Cek di console buat mastiin container-nya ketemu
+    if (!container) {
+        console.error("Waduh, element #tv-container gak ketemu!");
+        return;
+    }
+
+    // 1. Inisialisasi Container & Scene
 const container = document.getElementById('tv-container');
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
@@ -108,4 +117,5 @@ window.addEventListener('resize', () => {
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
+});
 });
