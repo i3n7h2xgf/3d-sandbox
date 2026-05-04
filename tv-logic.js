@@ -11,33 +11,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 1. Inisialisasi Container & Scene
-const container = document.getElementById('tv-container');
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-camera.position.z = 5;
-
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(container.clientWidth, container.clientHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-container.appendChild(renderer.domElement);
-
-// 2. Pencahayaan
-const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
-scene.add(ambientLight);
-
-const testBox = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshStandardMaterial({color: 0xff0000}));
-scene.add(testBox);
-
-const tvGlow = new THREE.PointLight(0x00ffff, 0, 10);
-scene.add(tvGlow);
-
-// 3. Variables & Loader
-let tvModel, tvScreen;
-const mouse = { x: 0, y: 0 };
-const loader = new GLTFLoader();
-
-loader.load('retrotv.glb', (gltf) => {
-    tvModel = gltf.scene;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+    camera.position.z = 5;
+    
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+    
+    // 2. Pencahayaan
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+    scene.add(ambientLight);
+    
+    const testBox = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshStandardMaterial({color: 0xff0000}));
+    scene.add(testBox);
+    
+    const tvGlow = new THREE.PointLight(0x00ffff, 0, 10);
+    scene.add(tvGlow);
+    
+    // 3. Variables & Loader
+    let tvModel, tvScreen;
+    const mouse = { x: 0, y: 0 };
+    const loader = new GLTFLoader();
+    
+    loader.load('retrotv.glb', (gltf) => {
+        tvModel = gltf.scene;
 
     // Putar agar hadap depan (sesuaikan nilai ini jika masih miring)
     tvModel.rotation.y = -Math.PI / 2; 
