@@ -1149,38 +1149,30 @@ hr {
 /* ------- */
 #tv-container {
     width: 100%;
-    aspect-ratio: 4 / 3; /* Biar ukurannya seragam sama grid lain */
+    aspect-ratio: 4 / 3;
     position: relative;
-    overflow: hidden;
-    background-color: transparent; /* Biar gak nutupin background section */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 8px; /* Biar dapet vibe rounded yang sama */
+    /* Jangan pake display: flex, Three.js lebih suka block */
+    display: block; 
+    background-color: transparent;
+    border-radius: 8px;
+    /* Hapus overflow dulu buat debugging */
 }
 
-/* Styling Canvas Three.js */
 #tv-container canvas {
-    width: 100% !important;
-    height: 100% !important;
+    /* Three.js bakal ngatur width/height lewat JS, 
+       tapi ini buat jaga-jaga biar responsif */
+    max-width: 100%;
+    max-height: 100%;
     display: block;
     outline: none;
-    cursor: grab; /* Biar user tau ini bisa diinteraksiin */
+    cursor: crosshair; /* Ganti kursor biar lebih asik */
 }
 
-#tv-container canvas:active {
-    cursor: grabbing;
-}
-
-/* Deskripsi di bawah TV (biar konsisten ama grid lain) */
-#tv-container .archive-description {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    pointer-events: none; /* Biar gak ganggu klik ke TV */
+/* Biar deskripsi di bawah TV sama kayak koleksi lain */
+.archive-image .archive-description {
+    margin-top: 10px;
+    text-align: left; /* Sesuaikan sama vibe koleksi lo */
+    display: block;
 }
 
 
