@@ -25,6 +25,9 @@ container.appendChild(renderer.domElement);
 const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
 scene.add(ambientLight);
 
+const testBox = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshStandardMaterial({color: 0xff0000}));
+scene.add(testBox);
+
 const tvGlow = new THREE.PointLight(0x00ffff, 0, 10);
 scene.add(tvGlow);
 
