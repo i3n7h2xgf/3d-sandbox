@@ -1148,6 +1148,7 @@ hr {
 
 /* ------- */
 #tv-container {
+    min-height: 300px; /* Kasih tinggi minimal buat testing */
     width: 100%;
     aspect-ratio: 4 / 3;
     position: relative;
