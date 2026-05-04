@@ -12,7 +12,7 @@
     scene.add(new THREE.AmbientLight(0xffffff, 2));
 
     const loader = new THREE.GLTFLoader(); // Pake THREE.GLTFLoader
-    loader.load('retrotv.glb', (gltf) => {
+    loader.load('/retrotv.glb', (gltf) => {
         const tv = gltf.scene;
         scene.add(tv);
         
